@@ -21,18 +21,42 @@ body{
 #img1 {
   background:url('https://www.beritatrans.com/images/content/1/2021/2021-01-29/1a338e394c19e9a15ad6a12bcc635110.jpeg') no-repeat center;
   background-size:cover;
+  position:absolute;
+  width:100%;
+  height:512px;
+  z-index: -1;
+}
+
+.back-slide-img{
   -webkit-filter: blur(13px);
   -moz-filter: blur(13px);
   -o-filter: blur(13px);
   -ms-filter: blur(13px);
   filter: blur(13px);
+}
+
+#img2 {
+  background:url('https://merahputih.com/media/2015/04/23/s2rKVMdNR51429767341.jpg') no-repeat center;
+  background-size:cover;
   position:absolute;
   width:100%;
   height:100%;
   z-index: -1;
 }
 
+#img3 {
+  background:url('https://kkp.go.id/an-component/media/upload-gambar-pendukung/brsdm/Foto%20Berita/WhatsApp%20Image%202022-05-05%20at%202.31.59%20PM%20(1).jpeg') no-repeat center;
+  background-size:cover;
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index: -1;
+}
+
+
 .imslide{
   margin-left: auto;
   margin-right: auto;
+  max-height: 512px;
+  min-height: 512px;
 }

@@ -21,14 +21,16 @@
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-        <div id="img1"></div>
-        <img src="https://www.beritatrans.com/images/content/1/2021/2021-01-29/1a338e394c19e9a15ad6a12bcc635110.jpeg" class="d-block h-100 imslide" alt="">
+            <div id="img1" class="back-slide-img"></div>
+            <img src="https://www.beritatrans.com/images/content/1/2021/2021-01-29/1a338e394c19e9a15ad6a12bcc635110.jpeg" class="d-block h-100 imslide" alt="">
         </div>
         <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
+            <div id="img2"class="back-slide-img"></div>
+            <img src="https://merahputih.com/media/2015/04/23/s2rKVMdNR51429767341.jpg" class="d-block h-100 imslide" alt="">
         </div>
         <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
+            <div id="img3"class="back-slide-img"></div>
+            <img src="https://kkp.go.id/an-component/media/upload-gambar-pendukung/brsdm/Foto%20Berita/WhatsApp%20Image%202022-05-05%20at%202.31.59%20PM%20(1).jpeg" class="d-block h-100 imslide" alt="">
         </div>
     </div>
     <div class="container pt-5">
