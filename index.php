@@ -47,10 +47,10 @@
 
         <!-- sign login button -->
         <div class="d-flex justify-content-center">
-            <a href="pages/form_signup.php" class="btn" id="daftar_btn">
+            <a href="pages/form_signup.php" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="daftar_btn">
                 Daftar
             </a>
-            <a href="#" class="btn" id="login_btn">
+            <a href="#" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="login_btn">
                 Masuk
             </a>
         </div>
