@@ -17,30 +17,30 @@
                 <h5>Silahkan mengisi form dibawah ini untuk membuat akun pendaftar</h5>
             </div>
             <div class="bg-white rounded px-3 auth-box mx-auto">
-                <form method="POST" action="../assets/php/proses_signup.php" >
+                <form method="POST" action="../assets/php/proses_signup.php" onSubmit="return validateForm()">
                     <fieldset>
                     <!-- Email input -->
                     <div class="form-outline pt-3">
                         <label class="form-label text-black" for="email">Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email anda"/>
+                        <input type="email" name="email" class="form-control" placeholder="Email anda" id="idemail"/>
                     </div>
 
                     <!-- Username input -->
                     <div class="form-outline mt-3">
                         <label class="form-label text-black" for="username">Username</label>
-                        <input type="text" name="username" class="form-control" placeholder="Email anda"/>
+                        <input type="text" name="username" class="form-control" placeholder="Username anda" id="idusername"/>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mt-3">
                         <label class="form-label text-black" for="password">Password</label>    
-                        <input type="password" name="password" class="form-control" placeholder="Password akun"/>     
+                        <input type="password" name="password" class="form-control" placeholder="Password akun" id="idpassword"/>     
                     </div>
 
                     <!-- Konfirmasi Password -->
                     <div class="form-outline mt-3">
                         <label class="form-label text-black" for="c_password">Konfirmasi Password</label>    
-                        <input type="password" name="c_password" class="form-control" placeholder="Password akun"/> 
+                        <input type="password" name="c_password" class="form-control" placeholder="Password akun" id="idc_password"/> 
                     </div>
                     
                     <!-- Login and Signin -->
@@ -56,7 +56,7 @@
         </div>
         <?php include('components/footer.php');?>
     </div>
-    
+    <script src="../assets/js/validator.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
