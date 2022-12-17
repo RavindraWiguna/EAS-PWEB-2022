@@ -17,7 +17,8 @@
                 <h5>Silahkan mengisi form dibawah ini untuk membuat akun pendaftar</h5>
             </div>
             <div class="bg-white rounded px-3 auth-box mx-auto">
-                <form method="POST" action="../assets/php/proses_signup.php">
+                <form method="POST" action="../assets/php/proses_signup.php" >
+                    <fieldset>
                     <!-- Email input -->
                     <div class="form-outline pt-3">
                         <label class="form-label text-black" for="email">Email</label>
@@ -27,7 +28,7 @@
                     <!-- Username input -->
                     <div class="form-outline mt-3">
                         <label class="form-label text-black" for="username">Username</label>
-                        <input type="email" name="username" class="form-control" placeholder="Email anda"/>
+                        <input type="text" name="username" class="form-control" placeholder="Email anda"/>
                     </div>
 
                     <!-- Password input -->
@@ -45,10 +46,11 @@
                     <!-- Login and Signin -->
                     <div class="d-flex justify-content-between mt-2">
                         <!-- submit -->
-                        <button type="button" class="btn btn-primary btn-block mb-4">Mendaftar</button>         
+                        <input type="submit" class="btn btn-primary btn-block mb-4" name="daftar" value="Mendaftar"/>         
                         <!-- login -->
                         <a href="form_login.php">Saya sudah punya akun</a>
                     </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
