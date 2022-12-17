@@ -19,8 +19,17 @@
     </div>
     <?php
     if(isset($_GET['status'])){
-        if($_GET['status']=='sukses'){
-            
+        if($_GET['status']=='sukses-mendaftar'){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Selamat!</strong> Anda berhasil mendaftar.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }
+        else if($_GET['status']=='gagal-mendaftar'){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Maaf!</strong> Gagal Mendaftar
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
         }
     }
     ?>
