@@ -16,11 +16,49 @@
             <div class="d-flex flex-column text-center text-white mt-4">
                 <h5>Silahkan mengisi form dibawah ini untuk membuat akun pendaftar</h5>
             </div>
+            <?php
+            if(isset($_GET['status'])){
+                if($_GET['status'] == 'gagal'){
+                    if($_GET['pesan'] == 'email'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Email yang anda masukkan tidak valid.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                    else if($_GET['pesan']=='username'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Username yang anda masukkan tidak valid.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                    else if($_GET['pesan']=='password'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Password yang anda masukkan belum cocok.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                    else if($_GET['pesan']=='nama'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Nama yang anda masukkan belum valid.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                }
+            }
+            ?>
             <div class="bg-white rounded px-3 auth-box mx-auto">
                 <form method="POST" action="../assets/php/proses_signup.php" onSubmit="return validateSign()">
                     <fieldset>
-                    <!-- Email input -->
+
+                    <!-- Nama Lengkap input -->
                     <div class="form-outline pt-3">
+                        <label class="form-label text-black" for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama lengap anda" id="idnama_lengkap"/>
+                        <p id="msgnama_lengkap" class="text-danger"></p>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mt-3">
                         <label class="form-label text-black" for="email">Email</label>
                         <input type="email" name="email" class="form-control" placeholder="Email anda" id="idemail"/>
                         <p id="msgemail" class="text-danger"></p>

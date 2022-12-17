@@ -3,6 +3,9 @@
 $request = $_SERVER['REQUEST_URI'];
 $app_url = 'http://localhost/kelautan';
 
+if(!session_id()) session_start();
+$_SESSION['app_url'] = $app_url;
+
 $filelocations = [
     'index.php' => '/index.php',
     'form_login.php'=>'/pages/form_login.php',

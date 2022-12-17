@@ -3,51 +3,84 @@
 
 include("../../config.php");
 
+if(!session_id()) session_start();
+$app_url = $_SESSION['app_url'];
+
 // cek apakah tombol daftar sudah diklik atau blum?
 if(isset($_POST['daftar'])){
 
     // ambil data dari formulir
     $email = $_POST['email'];
     $username = $_POST['username'];
+    $name = $_POST['nama_lengkap'];
     $password = $_POST['password'];
     $c_password = $_POST['c_password'];
-    // $agama = $_POST['agama'];
-    // $sekolah = $_POST['sekolah_asal'];
-    // $foto = $_FILES['foto']['name'];
-    // $tmp = $_FILES['foto']['tmp_name'];
-    // // Rename nama fotonya dengan menambahkan tanggal dan jam upload
-    // $fotobaru = date('dmYHis').$foto;
-    // // Set path folder tempat menyimpan fotonya
-    // $path = "../crud_upload/images/".$fotobaru;
-    // // header('Location: debug.php?status='.$path.'-'.$tmp.'-done');
-    // // return; 
-
-    // // upload dulu
-    // if(move_uploaded_file($tmp, $path)){
     
-    //     // buat query
-    //     $sql = "INSERT INTO `calon_siswa` (`nama`, `alamat`, `jenis_kelamin`, `agama`, `sekolah_asal`, `path_foto`) 
-    //     VALUES ('$nama', '$alamat', '$jk', '$agama', '$sekolah', '$path')";
-    //     $query = mysqli_query($db, $sql);
+    // validasi data
+    if(!valid_email($email)){
+        // redirect back ke halaman daftar
+        // die($app_url);
+        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=email");
+        die();
+    }
 
-    //     // apakah query simpan berhasil?
-    //     if( $query ) {
-    //         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
-    //         header('Location: index.php?status=sukses');
-    //     } else {
-    //         // kalau gagal alihkan ke halaman indek.php dengan status=gagal
-    //         header('Location: index.php?status=gagal');
-    //     }
-    // }
-    // else {
-    //     // kalau gagal alihkan ke halaman indek.php dengan status=gagal
-    //     header('Location: index.php?status=gagalUpload');
-    // }
-    echo 'mantap';
-    header('Location: index.php?status=sukses');
+    if(!valid_string($username)){
+        // redirect back ke halaman daftar
+        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=username");
+        die();
+    }
+
+    if($password != $c_password){
+        // redirect back ke halaman daftar
+        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=password");
+        die();
+    }
+
+    if(!valid_alphabet($name)){
+        // redirect back ke halaman daftar
+        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=nama");
+        die();   
+    }
+
+    // hash password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // buat query
+    $sql = "INSERT INTO `akun` (`email`, `username`,`name`, `password`,`privilege_level`) VALUES ('$email', '$username','$name', '$password', '1')";
+    $query = mysqli_query($db, $sql);
+
+    // apakah query simpan berhasil?
+    if( $query ) {
+        // kalau berhasil alihkan ke halaman index.php dengan status=sukses
+        header('Location: '.$app_url.'/index.php?status=sukses-mendaftar');
+    } else {
+        // kalau gagal alihkan ke halaman index.php dengan status=gagal
+        header('Location: '.$app_url.'/index.php?status=gagal-mendaftar');
+    }
 
 } else {
     die("Akses dilarang...");
+}
+
+// fungsi untuk mengecek valid email
+function valid_email($str) {
+    return (!preg_match(
+        "/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/",
+        $str)) ? FALSE : TRUE;
+}
+
+// cek apakah string terdiri dari huruf dan angka
+function valid_string($str) {
+    return (!preg_match(
+        "/^[a-zA-Z0-9]+$/",
+        $str)) ? FALSE : TRUE;
+}
+
+// cek apakah string terdiri dari huruf saja
+function valid_alphabet($str){
+    return (!preg_match(
+        "/^[a-zA-Z]+$/",$str
+    ))? FALSE:TRUE;
 }
 
 ?>

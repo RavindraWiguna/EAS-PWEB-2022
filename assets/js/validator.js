@@ -106,13 +106,14 @@ function resetValidateSignMessage(keep){
     let msgusername = document.getElementById('msgusername');
     let msgpassword = document.getElementById('msgpassword');
     let msgc_password = document.getElementById('msgc_password');
-
+    let msgnama_lengkap= document.getElementById('msgnama_lengkap');
 
     if(keep == 'email'){
         msgemail.textContent='Email belum valid';
         msgusername.textContent='';
         msgpassword.textContent='';
         msgc_password.textContent='';
+        msgnama_lengkap.textContent='';
         return;
     }
     if(keep == 'username'){
@@ -120,6 +121,7 @@ function resetValidateSignMessage(keep){
         msgusername.textContent='Username hanya dapat diisi oleh huruf dan angka';
         msgpassword.textContent='';
         msgc_password.textContent='';
+        msgnama_lengkap.textContent='';
         return;
     }
     if(keep == 'password'){
@@ -127,6 +129,7 @@ function resetValidateSignMessage(keep){
         msgusername.textContent='';
         msgpassword.textContent='Password masih kurang dari 9 karakter';
         msgc_password.textContent='';
+        msgnama_lengkap.textContent='';
         return;
     }
     if(keep == 'c_password'){
@@ -134,28 +137,49 @@ function resetValidateSignMessage(keep){
         msgusername.textContent='';
         msgpassword.textContent='';
         msgc_password.textContent='Konfirmasi password belum sama dengan password';
+        msgnama_lengkap.textContent='';
         return;
+    }
+    if(keep =='nama_lengkap'){
+        msgemail.textContent='';
+        msgusername.textContent='';
+        msgpassword.textContent='';
+        msgc_password.textContent='';
+        msgnama_lengkap.textContent='Nama lengkap hanya boleh terdiri dari huruf saja';
     }
 }
 
 function validateSign(){
     // alert("clicked");
+    let nama_lengkap = document.getElementById('idnama_lengkap').value;
+
     let email = document.getElementById("idemail").value;
     let username = document.getElementById("idusername").value;
     let password = document.getElementById('idpassword').value;
     let c_password = document.getElementById('idc_password').value;
     
-    let letters = /^[A-Za-z]+$/;
-    let numbers = /^[0-9]+$/;
+    // regex to check if string is made up of letters only
+    let letters = /^[a-zA-Z]+$/;
     let alphanum = /^[0-9a-zA-Z]+$/;
     let emails = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if(email=='' 
+    if(nama_lengkap==''
+    || email=='' 
     || username == '' 
     || password == '' 
     || c_password == ''){
         alert("Isi seluruh form dengan benar terlebih dahulu");
-        resetValidateSignMessage(null);
+        resetValidateSignMessage('');
+        return false;
+    }
+
+    // alert(nama_lengkap);
+    // alert(letters.test(nama_lengkap));
+    console.log(nama_lengkap);
+    console.log(letters.test(nama_lengkap));
+    if(!letters.test(nama_lengkap)){
+        document.getElementById('msgnama_lengkap').textContent='Nama hanya dapat terdiri dari huruf saja';
+        resetValidateSignMessage('nama_lengkap');
         return false;
     }
 

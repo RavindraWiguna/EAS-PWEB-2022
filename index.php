@@ -17,6 +17,13 @@
         <h1>Selamat Datang</h1>
         <h3>Calon Pegawai Kementrian Kelautan dan Perikanan</h2>
     </div>
+    <?php
+    if(isset($_GET['status'])){
+        if($_GET['status']=='sukses'){
+            
+        }
+    }
+    ?>
     <!-- image slide -->
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
