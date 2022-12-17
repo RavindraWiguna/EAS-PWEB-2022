@@ -1,0 +1,38 @@
+body{
+  min-height: 100%;
+  /* background: rgb(2,0,36); */
+  background: linear-gradient(135deg, rgba(0,212,255,1) 0%, rgba(114,9,121,1) 100%);
+}
+
+#daftar_btn{
+    background-color: orange;
+}
+
+#login_btn{
+    background-color: rgb(0, 136, 255);
+}
+
+@media (min-width: 1200px) {
+    .auth-box {
+      width: 512px;
+    }
+}
+
+#img1 {
+  background:url('https://www.beritatrans.com/images/content/1/2021/2021-01-29/1a338e394c19e9a15ad6a12bcc635110.jpeg') no-repeat center;
+  background-size:cover;
+  -webkit-filter: blur(13px);
+  -moz-filter: blur(13px);
+  -o-filter: blur(13px);
+  -ms-filter: blur(13px);
+  filter: blur(13px);
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index: -1;
+}
+
+.imslide{
+  margin-left: auto;
+  margin-right: auto;
+}
