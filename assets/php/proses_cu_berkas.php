@@ -1,11 +1,11 @@
 <?php
 include("../../config.php");
-
+include('proses_ambil_datadiri.php');
 if(!session_id()) session_start();
 
 //ambil id
 $id = $_SESSION['user']['id'];
-
+//TODO TAMBAH KODE HAPUS FILE LAMA SETELAH BERHASIL DI UPLOAD
 if(isset($_POST['isi_berkas'])){
 
     // nama kolom tabel
@@ -35,10 +35,17 @@ if(isset($_POST['isi_berkas'])){
     $result_foto = move_uploaded_file($_FILES['pasfoto']['tmp_name'], $path_foto);
 
     if(! $result_foto){
+        // karena gagal upload foto hapus berkas yang baru saja berhasil diupload
+        unlink($path_berkas);
+     
         // kembali ke laman dashboard dengan status gagal upload foto
         header('Location: ../../pages/dashboards/user_dashboard.php?status=gagal&pesan=upload-foto');
         exit();
     }
+
+    
+    $backup_berkas = $path_berkas;
+    $backup_foto = $path_foto;
 
     // update path dulu sebelum dimasukkan ke tabel yakni menghilangkan ../..
     $path_berkas = str_replace("../..", "", $path_berkas);
@@ -54,6 +61,10 @@ if(isset($_POST['isi_berkas'])){
         header('Location: ../../pages/dashboards/user_dashboard.php?status=sukses&pesan=upload-semua');
         exit();
     } else {
+        // kalau gagal disimpan di tabel maka hapus semua file yang baru saja diupload
+        unlink($backup_berkas);
+        unlink($backup_foto);
+
         // kalau gagal alihkan ke halaman dashboard.php dengan status=gagal dan pesan upload-semua 
         header('Location: ../../pages/dashboards/user_dashboard.php?status=gagal&pesan=upload-semua');
         exit();
