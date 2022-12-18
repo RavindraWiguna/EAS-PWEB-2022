@@ -47,7 +47,7 @@
                             <a class="nav-link '.$is_actives['Dashboard'].'" aria-current="page" href="pages/dashboards/user_dashboard.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link '.$is_actives['Data Diri'].'" aria-current="page" href="pages/form_datadiri.php">Data Diri</a>
+                            <a class="nav-link '.$is_actives['Data Diri'].'" aria-current="page" href="pages/lihat_datadiri.php">Data Diri</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link '.$is_actives['Berkas'].'" aria-current="page" href="#">Berkas</a>
