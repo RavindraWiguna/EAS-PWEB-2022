@@ -14,6 +14,7 @@ $filelocations = [
     'user_dashboard.php' => '/pages/dashboards/user_dashboard.php',
     'lihat_datadiri.php'=> '/pages/lihat_datadiri.php',
     'form_datadiri.php' => '/pages/form_datadiri.php',
+    'lihat_berkas.php' => '/pages/lihat_berkas.php',
     'proses_logout.php' => '/assets/php/proses_logout.php',
 ];
 

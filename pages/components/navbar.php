@@ -50,7 +50,7 @@
                             <a class="nav-link '.$is_actives['Data Diri'].'" aria-current="page" href="pages/lihat_datadiri.php">Data Diri</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link '.$is_actives['Berkas'].'" aria-current="page" href="#">Berkas</a>
+                            <a class="nav-link '.$is_actives['Berkas'].'" aria-current="page" href="pages/lihat_berkas.php">Berkas</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link '.$is_actives['Hasil'].' dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
