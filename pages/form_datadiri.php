@@ -1,4 +1,3 @@
-<!-- halaman formulir pendaftaran -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,30 +21,14 @@
             <div class="d-flex flex-column text-center text-white mt-4">
                 <h5>Isi form dengan benar sesuai yang tertera pada KTP</h5>
             </div>
-            <?php
-            if(isset($_GET['status'])){
-                if($_GET['status'] == 'gagal'){
-                    if($_GET['pesan'] == 'password'){
-                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Gagal!</strong> Password yang anda masukkan salah.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>';
-                    } else if($_GET['pesan'] == 'user_email'){
-                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Gagal!</strong> Email/Username yang anda masukkan salah.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>';
-                    }
-                }
-            }
-            ?>
             <div class="bg-white rounded px-3 auth-box mx-auto">
                 <form method="POST" action="../assets/php/proses_cu_datadiri.php" onSubmit="return validateDataDiri()">
                     <p id="msgform" class="text-danger pt-3"></p>
-                    <!-- Email/Username input -->   
+                    
+                    <!-- NIK -->   
                     <div class="form-outline mt-1">
-                        <label class="form-label text-black" for="user_email">Email atau Username</label>
-                        <input type="text" name="user_email" class="form-control" placeholder="Email/Username" id="iduser_email"/>
+                        <label class="form-label text-black" for="nik">NIK</label>
+                        <input type="text" name="nik" class="form-control" placeholder="NIK sessuai KTP" id="idnik"/>
                     </div>
 
                     <!-- Password input -->
