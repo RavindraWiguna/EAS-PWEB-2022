@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 <body>
+    <?php
+    include("../../assets/php/auth_checker.php");
+
+    check(2);
+    ?>
     <?php 
     include("../components/navbar.php")?>
     <div class="text-center text-white p-5 mt-4">
         <h1>Selamat Datang</h1>
-        <h3>ADMIN</h2>
+        <h3>Pegawai</h2>
     </div>
     <?php
     if(isset($_GET['status'])){

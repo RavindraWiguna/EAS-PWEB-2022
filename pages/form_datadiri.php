@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+    <?php
+    include("../../assets/php/auth_checker.php");
+
+    check(1);
+    ?>
     <h3>Formulir Pendaftaran Siswa Baru</h3>
 
     <form action="proses-pendaftaran.php" method="POST" enctype="multipart/form-data">
