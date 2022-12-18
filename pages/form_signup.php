@@ -74,14 +74,24 @@
                     <!-- Password input -->
                     <div class="form-outline mt-3">
                         <label class="form-label text-black" for="password">Password</label>    
-                        <input type="password" name="password" class="form-control" placeholder="Password akun" id="idpassword"/>     
+                        <div class="input-group">
+                            <input type="password" name="password" class="form-control" placeholder="Password akun" id="idpassword"/>  
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showPassword()">
+                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px" class="show-pass-icon">
+                            </button>
+                        </div>
                         <p id="msgpassword" class="text-danger"></p>
                     </div>
 
                     <!-- Konfirmasi Password -->
                     <div class="form-outline mt-3">
                         <label class="form-label text-black" for="c_password">Konfirmasi Password</label>    
-                        <input type="password" name="c_password" class="form-control" placeholder="Password akun" id="idc_password"/> 
+                        <div class="input-group">
+                            <input type="password" name="c_password" class="form-control" placeholder="Ketik ulang password anda" id="idc_password"/> 
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showPassword()">
+                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px" class="show-pass-icon">
+                            </button>
+                        </div>
                         <p id="msgc_password" class="text-danger"></p>
                     </div>
                     

@@ -24,7 +24,7 @@ if(str_contains($request, $app_url)){
     die();
 }
 
-foreach($filelocations as $filename){
+foreach($filelocations as $filename => $Location){
     if(str_contains($request, $filename)){
         redirector($filename, $app_url, $filelocations);
         die();

@@ -157,3 +157,15 @@ function validateLogin(){
 
     return true;
 }
+
+function showPassword(event) {
+    var x = document.getElementById("idpassword");
+    let icon = document.getElementsByClassName('show-icon-password')[0];
+    if (x.type === "password") {
+        x.type = "text";
+        icon.src ='../assets/media/eye-open.svg';
+    } else {
+        x.type = "password";
+        icon.src ='../assets/media/eye-closed.svg';
+    }
+}
