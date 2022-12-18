@@ -39,16 +39,31 @@ include('../assets/php/proses_ambil_datadiri.php');
                     'alamat' => 'Alamat',
                 ];
 
-                if($pendaftar['path_berkas']){
+
+                if($pendaftar['exist']){
+                    if($pendaftar['path_berkas']){
+
+                    }
+                    else{
+                        echo '
+                        <div class="alert alert-danger pt-3 mt-3 text-center" role="alert">
+                            Anda belum mengisi berkas, silahkan isi berkas anda terlebih dahulu
+                        </div>';
+                        echo '
+                        <div class="d-flex justify-content-center pb-3">
+                            <a href="form_berkas.php" class="btn btn-primary">Isi Berkas</a>
+                        </div>
+                        ';
+                    }
 
                 }else{
                     echo '
                     <div class="alert alert-danger pt-3 mt-3 text-center" role="alert">
-                        Anda belum mengisi berkas, silahkan isi berkas anda terlebih dahulu
+                        Anda belum mengisi data diri, silahkan isi data diri anda terlebih dahulu
                     </div>';
                     echo '
                     <div class="d-flex justify-content-center pb-3">
-                        <a href="form_berkas.php" class="btn btn-primary">Isi Berkas</a>
+                        <a href="form_datadiri.php" class="btn btn-primary">Isi Data Diri</a>
                     </div>
                     ';
                 }
