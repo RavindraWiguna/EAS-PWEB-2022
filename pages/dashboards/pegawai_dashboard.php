@@ -1,3 +1,7 @@
+<?php
+include("../../assets/php/auth_checker.php");
+check(2);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +14,6 @@
     <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 <body>
-    <?php
-    include("../../assets/php/auth_checker.php");
-
-    check(2);
-    ?>
     <?php 
     include("../components/navbar.php")?>
     <div class="text-center text-white p-5 mt-4">
