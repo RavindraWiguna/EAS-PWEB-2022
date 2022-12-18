@@ -67,13 +67,13 @@
                 <?php
                 if(isset($_SESSION['user_is_login'])){
                     if($_SESSION['user_is_login']){
-                        echo '<a class="nav-link text-white p-2" aria-current="page" href="php/proses_logout.php">Keluar</a>';
+                        echo '<a class="nav-link rounded text-white p-2 text-center my-auth-btn" aria-current="page" href="php/proses_logout.php">Keluar</a>';
                     }
                     else{
-                        echo '<a class="nav-link text-white p-2" aria-current="page" href="pages/form_login.php">Masuk</a>';
+                        echo '<a class="nav-link rounded text-white p-2 text-center my-auth-btn" aria-current="page" href="pages/form_login.php">Masuk</a>';
                     }
                 }else{
-                    echo '<a class="nav-link rounded p-2 text-white" aria-current="page" href="pages/form_login.php" id="masuk-btn">Masuk</a>';
+                    echo '<a class="nav-link rounded text-white p-2 text-center my-auth-btn" aria-current="page" href="pages/form_login.php">Masuk</a>';
                 }
                 ?>
             </div>
@@ -81,7 +81,7 @@
 
     </div>
     <style>
-        #masuk-btn:hover{
+        .my-auth-btn:hover{
             background-color:#00a5df;
         }
         #mynav{
