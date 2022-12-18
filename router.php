@@ -10,24 +10,33 @@ $filelocations = [
     'index.php' => '/index.php',
     'form_login.php'=>'/pages/form_login.php',
     'form_signup.php'=>'/pages/form_signup.php',
+    'pegawai_dashboard.php'=>'/pages/dashboards/pegawai_dashboard.php',
+    'user_dashboard.php' => '/pages/dashboards/user_dashboard.php',
+    'proses_logout.php' => '/assets/php/proses_logout.php',
 ];
 
 function redirector($filename, $app, $files){
-    header('Location: '.$app.'/'.$files[$filename]);
+    header('Location: '.$app.$files[$filename]);
     exit();
 }
 
 
 // Real url catcher
 if(str_contains($request, $app_url)){
+    $stripped = str_replace($app_url, '', $request);
+    // cek apakah terdapat tanda garing ganda pada request
+    while(str_contains($stripped, '//')){
+        $stripped = str_replace('//', '/', $stripped);
+    }
+    $request = $app_url.$stripped;
     require $request;
-    die();
+    exit();
 }
 
 foreach($filelocations as $filename => $Location){
     if(str_contains($request, $filename)){
         redirector($filename, $app_url, $filelocations);
-        die();
+        exit();
     }
 }
 // if gak kena samsek

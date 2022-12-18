@@ -20,25 +20,25 @@ if(isset($_POST['daftar'])){
         // redirect back ke halaman daftar
         // die($app_url);
         header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=email");
-        die();
+        exit();
     }
 
     if(!valid_string($username)){
         // redirect back ke halaman daftar
         header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=username");
-        die();
+        exit();
     }
 
     if($password != $c_password){
         // redirect back ke halaman daftar
         header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=password");
-        die();
+        exit();
     }
 
     if(!valid_alphabet($name)){
         // redirect back ke halaman daftar
         header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=nama");
-        die();   
+        exit(); 
     }
 
     // cek apakah email sudah terdaftar
@@ -47,7 +47,7 @@ if(isset($_POST['daftar'])){
     if ($query->num_rows > 0) {
         // redirect back ke halaman daftar
         header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=email_exist");
-        die();
+        exit();
     }
 
     // cek apakah username sudah terdaftar
@@ -56,7 +56,7 @@ if(isset($_POST['daftar'])){
     if ($query->num_rows > 0) {
         // redirect back ke halaman daftar
         header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=username_exist");
-        die();
+        exit();
     }
 
     // hash password
@@ -70,9 +70,11 @@ if(isset($_POST['daftar'])){
     if( $query ) {
         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
         header('Location: '.$app_url.'/index.php?status=sukses&pesan=mendaftar');
+        exit();
     } else {
         // kalau gagal alihkan ke halaman index.php dengan status=gagal
         header('Location: '.$app_url.'/index.php?status=gagal&pesan=mendaftar');
+        exit();
     }
 
 } else {

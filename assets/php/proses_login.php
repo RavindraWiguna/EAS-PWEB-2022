@@ -25,7 +25,7 @@ if(isset($_POST['login'])){
     if($query->num_rows == 0){
         // redirect ke halaman login karena tidak ada yang match
         header("Location: ".$app_url."/pages/form_login.php?status=gagal&pesan=user_email");
-        die();
+        exit();
     }
 
     // loop query
@@ -39,19 +39,25 @@ if(isset($_POST['login'])){
         if(password_verify($password, $db_password)){
             // jika password benar
             // buat session
+            // $is_started = session_start();
+            // if($is_started){
             $_SESSION['user'] = $row;
             $_SESSION['user_is_login'] = true;
+            // }else{
+                // die('gagal sir');
+            // }
+
             // redirect ke halaman dashbord
 
             header("Location: ".$app_url."/pages".$dashboards[$row['privilege_level']]."?status=sukses&pesan=login");
-            die();
+            exit();
         } else {
             // jika password salah, lanjut ke data berikutnya
         }
     }
     // redirect ke halaman login karena tidak ada yang match
     header("Location: ".$app_url."/pages/form_login.php?status=gagal&pesan=password");
-    die();
+    exit();
 } else {
     die("Akses dilarang...");
 }

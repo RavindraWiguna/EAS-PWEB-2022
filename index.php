@@ -11,8 +11,7 @@
 </head>
 <body>
     <?php 
-    require_once('path.php');
-    include($paths['components'].'/navbar.php')?>
+    include('pages/components/navbar.php')?>
     <div class="text-center text-white p-5 mt-4">
         <h1>Selamat Datang</h1>
         <h3>Calon Pegawai Kementrian Kelautan dan Perikanan</h2>
@@ -77,19 +76,26 @@
         </button>
         </div>
 
-        <!-- sign login button -->
-        <div class="d-flex justify-content-center">
-            <a href="pages/form_signup.php" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="daftar_btn">
-                Daftar
-            </a>
-            <a href="pages/form_login.php" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="login_btn">
-                Masuk
-            </a>
-        </div>
+        <?php
+            if(!session_id()) session_start();
+            if(!isset($_SESSION['user_is_login'])){
+                echo '
+                <!-- sign login button -->
+                <div class="d-flex justify-content-center">
+                    <a href="pages/form_signup.php" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="daftar_btn">
+                        Daftar
+                    </a>
+                    <a href="pages/form_login.php" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="login_btn">
+                        Masuk
+                    </a>
+                </div>
+                ';
+            }
+        ?>
     </div>
     
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <?php include($paths['components'].'/footer.php')?>
+    <?php include('pages/components/footer.php')?>
 </body>
 </html>
