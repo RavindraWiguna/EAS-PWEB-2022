@@ -41,6 +41,15 @@ if(isset($_POST['daftar'])){
         die();   
     }
 
+    // cek apakah email sudah terdaftar
+    $sql = "SELECT * FROM `akun` WHERE `email` = '$email'";
+    $query = mysqli_query($db, $sql);
+    if ($query->num_rows > 0) {
+        // redirect back ke halaman daftar
+        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=email-terdaftar");
+        die();
+    }
+
     // hash password
     $password = password_hash($password, PASSWORD_DEFAULT);
 

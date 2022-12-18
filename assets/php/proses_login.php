@@ -13,7 +13,10 @@ if(isset($_POST['login'])){
     $password = $_POST['password'];
 
     // buat query ambil data akun
-    $sql =  $sql = "SELECT * from `akun` where";
+    $sql =  $sql = "SELECT * from `akun` where `email` = '$user_email' or `username` = '$user_email'";
+    $query = mysqli_query($db, $sql);
+    $akun = mysqli_fetch_assoc($query);
+    
     
 
     // if(password_verify())

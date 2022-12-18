@@ -43,12 +43,13 @@ function resetValidateMessage(keep){
     let msgpassword = document.getElementById('msgpassword');
     let msgc_password = document.getElementById('msgc_password');
     let msgnama_lengkap= document.getElementById('msgnama_lengkap');
+    let msgform = document.getElementById('msgform');
 
-    msgemail.textContent='';
-    msgusername.textContent='';
-    msgpassword.textContent='';
-    msgc_password.textContent='';
-    msgnama_lengkap.textContent='';
+    let arr = [msgemail,msgusername,msgpassword,msgc_password,msgnama_lengkap,msgform];
+    for(let i=0;i<arr.length;i++){
+        if(arr[i])
+            arr[i].textContent='';
+    }
 
     if(keep == 'email'){
         msgemail.textContent='Email belum valid';
@@ -73,6 +74,10 @@ function resetValidateMessage(keep){
         msgnama_lengkap.textContent='Nama lengkap hanya boleh terdiri dari huruf saja';
         return;
     }
+    if(keep =='form'){
+        msgform.textContent='Isi seluruh form dengan benar terlebih dahulu';
+        return;
+    }
 }
 
 function validateSign(){
@@ -94,8 +99,8 @@ function validateSign(){
     || username == '' 
     || password == '' 
     || c_password == ''){
-        alert("Isi seluruh form dengan benar terlebih dahulu");
-        resetValidateMessage('');
+        // alert("Isi seluruh form dengan benar terlebih dahulu");
+        resetValidateMessage('form');
         return false;
     }
 
@@ -142,19 +147,20 @@ function validateSign(){
 }
 
 function validateLogin(){
+    // alert('clicked');
     let user_email = document.getElementById("iduser_email").value;
     let password = document.getElementById('idpassword').value;
 
+    alert(user_email);
+    alert(password);
+
     if(user_email==''
     || password==''){
-        alert('Isikan seluruh form dengan benar terlebih dahulu');
-        resetValidateMessage(null);
+        // alert('ini bos');
+        resetValidateMessage('form');
         return false;
     }
-
-    // cek apakah dalam user_email terdapat @
-    if(user_email.inc)
-
+    // alert('done');
     return true;
 }
 

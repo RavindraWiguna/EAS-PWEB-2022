@@ -18,9 +18,9 @@
             </div>
             <div class="bg-white rounded px-3 auth-box mx-auto">
                 <form method="POST" action="../assets/php/proses_login.php" onSubmit="return validateLogin()">
-                    <p id="msglogin" class="text-danger"></p>
-                    <!-- Email/Username input -->
-                    <div class="form-outline pt-3">
+                    <p id="msgform" class="text-danger pt-3"></p>
+                    <!-- Email/Username input -->   
+                    <div class="form-outline mt-1">
                         <label class="form-label text-black" for="user_email">Email atau Username</label>
                         <input type="text" name="user_email" class="form-control" placeholder="Email/Username" id="iduser_email"/>
                     </div>

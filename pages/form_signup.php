@@ -45,15 +45,33 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                     }
+                    else if($_GET['pesan']=='username_exist'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Username yang anda masukkan sudah terdaftar.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                    else if($_GET['pesan']=='email_exist'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Email yang anda masukkan sudah terdaftar.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                    else if($_GET['pesan']=='empty'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Maaf!</strong> Mohon untuk mengisi semua form yang tersedia.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
                 }
             }
             ?>
             <div class="bg-white rounded px-3 auth-box mx-auto">
                 <form method="POST" action="../assets/php/proses_signup.php" onSubmit="return validateSign()">
                     <fieldset>
-
+                    <p id="msgform" class="text-danger mt-3"></p>
                     <!-- Nama Lengkap input -->
-                    <div class="form-outline pt-3">
+                    <div class="form-outline mt-1">
                         <label class="form-label text-black" for="nama_lengkap">Nama Lengkap</label>
                         <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama lengap anda" id="idnama_lengkap"/>
                         <p id="msgnama_lengkap" class="text-danger"></p>
