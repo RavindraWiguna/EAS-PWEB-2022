@@ -21,10 +21,10 @@ include('../assets/php/proses_ambil_datadiri.php');
     <?php include('components/navbar.php')?>
     <div class="main-gradient pt-5">
         <div class="container">
-            <div class="d-flex flex-column text-center text-white mt-4">
+            <div class="d-flex flex-column text-center text-white mt-4 mb-2">
                 <h5>Data Diri Anda</h5>
             </div>
-            <div class="bg-white rounded px-3 mx-auto my-form-box">
+            <div class="bg-white rounded px-3 mx-auto my-form-box shadow">
                 <div class="pt-2"></div>
                 <?php
 
