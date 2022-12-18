@@ -27,7 +27,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                 <h5>Unggah berkas yang diperlukan</h5>
             </div>
             <div class="bg-white rounded px-3 my-form-box mx-auto">
-                <form method="POST" action="../assets/php/proses_cu_datadiri.php" onSubmit="return validateBerkas()" enctype="multipart/form-data">
+                <form method="POST" action="../assets/php/proses_cu_berkas.php" onSubmit="return validateBerkas()" enctype="multipart/form-data">
                     <p id="msgform" class="text-danger pt-3"></p>
 
                     <!-- berkas -->
