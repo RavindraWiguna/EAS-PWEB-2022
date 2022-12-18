@@ -25,11 +25,11 @@ function redirect_dashboard(){
         redirect_login();
         exit();
     }
-    if($_SESSION['user_level'] == 1){
+    if($_SESSION['user']['privilege_level'] == 1){
         redirect_handler('/pages/dashboards/user_dashboard.php');
         exit();
     }
-    if($_SESSION['user_level'] >= 2){
+    if($_SESSION['user']['privilege_level'] >= 2){
         redirect_handler('/pages/dashboards/pegawai_dashboard.php');
         exit();
     }
@@ -38,13 +38,19 @@ function redirect_dashboard(){
 function check($level){
 
     switch ($level) {
+        case -1:
+            if(isset($_SESSION['user_is_login'])){
+                redirect_dashboard();
+                exit();
+            }
+            break;
         case 1:
             if(!isset($_SESSION['user_is_login'])){
                 redirect_login();
                 exit();
             }
             // jika lebih tinggi arahkan ke dashboard mereka
-            if($_SESSION['user_level'] > 1){
+            if($_SESSION['user']['privilege_level'] > 1){
                 redirect_dashboard();
                 exit();
             }
@@ -54,7 +60,7 @@ function check($level){
                 redirect_login();
                 exit();
             }
-            if($_SESSION['user_level'] < 2){
+            if($_SESSION['user']['privilege_level'] < 2){
                 denied();
                 exit();
             }
@@ -64,7 +70,7 @@ function check($level){
                 redirect_login();
                 exit();
             }
-            if($_SESSION['user_level'] < 4){
+            if($_SESSION['user']['privilege_level'] < 4){
                 denied();
                 exit();
             }

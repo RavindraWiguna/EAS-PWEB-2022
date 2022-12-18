@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
+    <?php
+    include("../assets/php/auth_checker.php");
+
+    check(-1);
+    ?>
     <?php include('components/navbar.php')?>
     <div class="main-gradient pt-5">
         <div class="container">
