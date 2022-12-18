@@ -15,6 +15,7 @@ $filelocations = [
     'lihat_datadiri.php'=> '/pages/lihat_datadiri.php',
     'form_datadiri.php' => '/pages/form_datadiri.php',
     'lihat_berkas.php' => '/pages/lihat_berkas.php',
+    'form_berkas.php' => '/pages/form_berkas.php',
     'proses_logout.php' => '/assets/php/proses_logout.php',
 ];
 
