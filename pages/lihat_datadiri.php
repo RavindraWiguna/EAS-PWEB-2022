@@ -64,7 +64,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                     echo '
                     </tbody>
                     </table>
-                    <div class="pb-3">
+                    <div class="pb-3 d-grid">
                         <a href="form_datadiri.php" class="btn btn-primary">Sunting Data Diri</a>
                     </div>
                     ';

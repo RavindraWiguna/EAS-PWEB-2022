@@ -1,6 +1,5 @@
 <?php
 include("../../config.php");
-include('validator.php');
 include('proses_ambil_datadiri.php');
 
 if(!session_id()) session_start();
@@ -73,11 +72,8 @@ if(isset($_POST['isi_data_diri'])){
             exit();
         }
     }
-    
-
-
 }
-
-
-
+else {
+    die("Akses dilarang...");
+}
 ?>

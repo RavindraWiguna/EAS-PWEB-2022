@@ -51,6 +51,13 @@ check(1);
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
             }
+            // cek jika sukses mengupload berkas dan foto
+            else if($_GET['pesan']=='upload-semua'){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Selamat!</strong> Anda berhasil mengupload berkas dan foto.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
         }
         else if($_GET['status']=='gagal'){
             if($_GET['pesan']=='mendaftar'){
@@ -76,6 +83,27 @@ check(1);
             else if($_GET['pesan']=='tambah-data-diri'){
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Maaf!</strong> Gagal Menambah Data Diri
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+            // cek jika gagal upload berkas
+            else if($_GET['pesan']=='upload-berkas'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf!</strong> Gagal Upload Berkas
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+            // cek jika gagal upload foto
+            else if($_GET['pesan']=='upload-foto'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf!</strong> Gagal Upload Foto
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+            // cek jika gagal upload semua
+            else if($_GET['pesan']=='upload-semua'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf!</strong> Gagal Upload Berkas dan Foto
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
             }

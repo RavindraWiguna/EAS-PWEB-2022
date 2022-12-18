@@ -187,7 +187,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                     </div>
 
                     <!-- submit -->
-                    <div class="d-flex justify-content-between mt-3">
+                    <div class="d-grid mt-3">
                         <input type="submit" class="btn btn-primary btn-block mb-4" name="isi_data_diri" value="Selesai"/>         
                     </div>
                 </form>

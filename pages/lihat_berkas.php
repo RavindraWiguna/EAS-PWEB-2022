@@ -29,20 +29,72 @@ include('../assets/php/proses_ambil_datadiri.php');
                 <?php
 
                 $show_names = [ 
-                    'nik' => 'NIK',
-                    'nama_lengkap' => 'Nama Lengkap',
-                    'tempat_lahir' => 'Tempat Lahir',
-                    'tanggal_lahir' => 'Tanggal Lahir',
-                    'jenis_kelamin' => 'Jenis Kelamin',
-                    'agama' => 'Agama',
-                    'status_perkawinan' => 'Status Perkawinan',
-                    'alamat' => 'Alamat',
+                    'path_berkas' => 'KTP dan Ijazah',
+                    'path_foto' => 'Pas Foto',
                 ];
 
 
                 if($pendaftar['exist']){
                     if($pendaftar['path_berkas']){
+                        echo '
+                        <table class="table table-hover mx-auto">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="text-center">Nama Berkas</th>
+                            <th scope="col" class="text-center">Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        ';
+                        foreach($pendaftar as $key => $value){
+                            if(array_key_exists($key, $show_names)){
+                                $key = $show_names[$key];
+                                echo '
+                                <tr>
+                                    <th scope="row">'.$key.'</th>
+                                    <td>'.basename($value).'</td>
+                                </tr>
+                                ';
+                            }
+                        }
+                        echo '
+                        </tbody>
+                        </table>
 
+                        <div class="d-flex justify-content-center pb-3 flex-column">
+                            <img src="'.$app_url.$pendaftar['path_foto'].'" alt="" style="width:50%; margin-bottom:10px">    
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Sunting Berkas
+                            </button>
+                        </div>
+                        ';
+
+                        echo '
+ 
+        
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Ingin menyunting berkas?</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-danger" role="alert">
+                                    Menyunting berkas akan menghapus berkas yang anda kirimkan sebelumnya<br>
+                                    Apakah anda yakin ingin menyunting berkas?
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
+                                <button type="button" class="btn btn-danger">Ya, saya yakin</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        ';
                     }
                     else{
                         echo '

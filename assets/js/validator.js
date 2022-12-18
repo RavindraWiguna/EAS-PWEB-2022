@@ -257,8 +257,14 @@ function showPassword(event) {
 }
 
 function validateBerkas(){
-    // cek apakah format file yang diunggah telah sesuai jika id input adalah idberkas
     let berkas = document.getElementById('idberkas');
+    // cek apakah file telah di upload
+    if(berkas.files.length == 0){
+        resetValidateMessage('berkas', 'File berkas belum diunggah');
+        document.getElementById('msgberkas').scrollIntoView(false);
+        return false;
+    }
+
     let file = berkas.files[0];
     let filename = file.name;
     let ext = filename.split('.').pop().toLowerCase();
@@ -276,8 +282,15 @@ function validateBerkas(){
         return false;
     }
 
-    // cek apakah format file foto yang telah diunggah sesuai jika id input adalah idpasfoto
     let pasfoto = document.getElementById('idpasfoto');
+    // cek apakah pasfoto telah di upload
+    if(pasfoto.files.length == 0){
+        resetValidateMessage('pasfoto', 'File pasfoto belum diunggah');
+        document.getElementById('msgpasfoto').scrollIntoView(false);
+        return false;
+    }
+
+    // cek apakah format file foto yang telah diunggah sesuai jika id input adalah idpasfoto
     let file2 = pasfoto.files[0];
     let filename2 = file2.name;
     let ext2 = filename2.split('.').pop().toLowerCase();
@@ -295,7 +308,7 @@ function validateBerkas(){
         return false;
     }
 
-    return false;
+    return true;
 }
 
 

@@ -49,7 +49,7 @@ include('../assets/php/proses_ambil_datadiri.php');
 
                     <!-- submit -->
                     <div class="d-flex justify-content-between mt-3">
-                        <input type="submit" class="btn btn-primary btn-block mb-4" name="isi_berkas" value="Selesai"/>         
+                        <input type="submit" class="btn btn-primary btn-block mb-4" name="isi_berkas" value="Selesai"/>     
                     </div>
                 </form>
             </div>
