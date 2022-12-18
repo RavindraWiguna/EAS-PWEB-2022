@@ -1,4 +1,5 @@
-    function getAge(dateString) 
+// Menghitung umur berdasarkan tanggal lahir
+function getAge(dateString) 
 {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -10,31 +11,6 @@
     }
     return age;
 }
-function get_date(){
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    
-    var databula = [
-        "Invalid"
-        ,"Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Agustus"
-        ,"September"
-        ,"Oktober"
-        ,"November",
-        "Desember"
-    ]
-
-    today = dd + ' ' + databula[parseInt(mm)] + ' ' + yyyy;
-    return today;
-}
 
 // reset validate message except keep
 function resetValidateMessage(keep){
@@ -45,38 +21,36 @@ function resetValidateMessage(keep){
     let msgnama_lengkap= document.getElementById('msgnama_lengkap');
     let msgform = document.getElementById('msgform');
 
-    let arr = [msgemail,msgusername,msgpassword,msgc_password,msgnama_lengkap,msgform];
+    let msgnik = document.getElementById('msgnik');
+    let msgtanggal_lahir = document.getElementById('msgtanggal_lahir');
+    let msgtempat_lahir = document.getElementById('msgtempat_lahir');
+    let msgjenis_kelamin = document.getElementById('msgjenis_kelamin');
+    let msgagama = document.getElementById('msgagama');
+    let msgstatus_perkawinan = document.getElementById('msgstatus_perkawinan');
+
+    let arr = [msgemail,msgusername,msgpassword,msgc_password,msgnama_lengkap,msgform, 
+               msgnik, msgtanggal_lahir, msgtempat_lahir, msgjenis_kelamin, msgagama, 
+               msgstatus_perkawinan];
+    
     for(let i=0;i<arr.length;i++){
         if(arr[i])
             arr[i].textContent='';
     }
 
-    if(keep == 'email'){
-        msgemail.textContent='Email belum valid';
-        return;
-    }
+    let arr_keep_msgs = {
+        'email' : 'Email belum valid',
+        'username' : 'Username hanya dapat diisi oleh huruf dan angka',
+        'password' : 'Password masih kurang dari 9 karakter',
+        'c_password' : 'Konfirmasi password belum sama dengan password',
+        'nama_lengkap' : 'Nama lengkap hanya boleh terdiri dari huruf saja',
+        'form' : 'Isi seluruh form dengan benar terlebih dahulu',
+        'nik' : 'NIK harus terdiri dari 16 digit angka',
+        'tanggal_lahir' : 'Tanggal lahir tidak valid',
+        'tempat_lahir' : 'Tempat lahir tidak valid',
+    };
 
-    if(keep == 'username'){
-        msgusername.textContent='Username hanya dapat diisi oleh huruf dan angka';
-        return;
-    }
-
-    if(keep == 'password'){
-        msgpassword.textContent='Password masih kurang dari 9 karakter';
-        return;
-    }
-
-    if(keep == 'c_password'){
-        msgc_password.textContent='Konfirmasi password belum sama dengan password';
-        return;
-    }
-    if(keep =='nama_lengkap'){
-        msgnama_lengkap.textContent='Nama lengkap hanya boleh terdiri dari huruf saja';
-        return;
-    }
-    if(keep =='form'){
-        msgform.textContent='Isi seluruh form dengan benar terlebih dahulu';
-        return;
+    if(keep in arr_keep_msgs){
+        document.getElementById('msg'+keep).textContent = arr_keep_msgs[keep];
     }
 }
 
@@ -162,7 +136,65 @@ function validateLogin(){
 }
 
 function validateDataDiri(){
-    // alert('clicked');
+    // validasi nik, nama, tanggal lahir, tempat lahir, jenis kelamin, agama, status perkawinan
+    let nik = document.getElementById('idnik').value;
+    let nama = document.getElementById('idnama').value;
+    let tempat_lahir = document.getElementById('idtempat_lahir').value;
+    let tanggal_lahir = document.getElementById('idtanggal_lahir').value;
+    let jenis_kelamin = document.getElementById('idjenis_kelamin').value;
+    let agama = document.getElementById('idagama').value;
+    let status_perkawinan = document.getElementById('idstatus_perkawinan').value;
+
+    if(nik=='' || nama=='' || tempat_lahir=='' || tanggal_lahir=='' || jenis_kelamin=='' || agama=='' || status_perkawinan==''){
+        resetValidateMessage('form');
+        return false;
+    }
+
+    // validasi nik apakah terdiri dari angka saja dengan regex
+    let numbers = /^[0-9]+$/;
+    if(!numbers.test(nik)){
+        resetValidateMessage('nik');
+        return false;
+    }
+
+    // validasi apakah nama hanya terdiri dari huruf dan spasi
+    let letters = /^[a-zA-Z\s]*$/;
+    if(!letters.test(nama)){
+        resetValidateMessage('nama');
+        return false;
+    }
+
+    // validasi apakah umur sudah diatas 18 tahun
+    let umur = getAge(tanggal_lahir);
+    if(umur < 18){
+        resetValidateMessage('tanggal_lahir');
+        return false;
+    }
+
+    // validasi apakah tempat lahir hanya terdiri dari huruf dan spasi
+    if(!letters.test(tempat_lahir)){
+        resetValidateMessage('tempat_lahir');
+        return false;
+    }
+
+    // validasi apakah jenis kelamin sudah dipilih
+    if(jenis_kelamin==''){
+        resetValidateMessage('jenis_kelamin');
+        return false;
+    }
+
+    // validasi apakah agama sudah dipilih
+    if(agama==''){
+        resetValidateMessage('agama');
+        return false;
+    }
+
+    // validasi apakah status perkawinan sudah dipilih
+    if(status_perkawinan==''){
+        resetValidateMessage('status_perkawinan');
+        return false;
+    }
+
     return false;
 }
 

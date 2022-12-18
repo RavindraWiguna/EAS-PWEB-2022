@@ -16,6 +16,10 @@ body{
     .auth-box {
       width: 512px;
     }
+
+    .my-form-box {
+      width: 720px;
+    }
 }
 
 #img1 {
