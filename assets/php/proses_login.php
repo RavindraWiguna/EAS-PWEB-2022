@@ -6,9 +6,9 @@ if(!session_id()) session_start();
 $app_url = $_SESSION['app_url'];
 
 $dashboards=[];
-$dashboards[4] = '/dashboard/pegawai_dashboard.php'; // sama tapi nantik diganti di variable aja
-$dashboards[2] = '/dashboard/pegawai_dashboard.php';
-$dashboards[1] = '/dashboard/user_dashboard.php';
+$dashboards[4] = '/dashboards/pegawai_dashboard.php'; // sama tapi nantik diganti di variable aja
+$dashboards[2] = '/dashboards/pegawai_dashboard.php';
+$dashboards[1] = '/dashboards/user_dashboard.php';
 
 // cek apakah tombol daftar sudah diklik atau blum?
 if(isset($_POST['login'])){
@@ -43,7 +43,7 @@ if(isset($_POST['login'])){
             $_SESSION['user_is_login'] = true;
             // redirect ke halaman dashbord
 
-            header("Location: ".$app_url."/pages/dashbpard_.php?status=sukses&pesan=login");
+            header("Location: ".$app_url."/pages".$dashboards[$row['privilege_level']]."?status=sukses&pesan=login");
             die();
         } else {
             // jika password salah, lanjut ke data berikutnya
