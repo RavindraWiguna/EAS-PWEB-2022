@@ -1,4 +1,4 @@
-function getAge(dateString) 
+    function getAge(dateString) 
 {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -90,7 +90,7 @@ function validateSign(){
     let c_password = document.getElementById('idc_password').value;
     
     // regex to check if string is made up of letters only
-    let letters = /^[a-zA-Z]+$/;
+    let letters = /^[a-zA-Z\s]*$/;
     let alphanum = /^[0-9a-zA-Z]+$/;
     let emails = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -150,9 +150,6 @@ function validateLogin(){
     // alert('clicked');
     let user_email = document.getElementById("iduser_email").value;
     let password = document.getElementById('idpassword').value;
-
-    alert(user_email);
-    alert(password);
 
     if(user_email==''
     || password==''){

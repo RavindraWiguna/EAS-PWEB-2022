@@ -46,7 +46,16 @@ if(isset($_POST['daftar'])){
     $query = mysqli_query($db, $sql);
     if ($query->num_rows > 0) {
         // redirect back ke halaman daftar
-        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=email-terdaftar");
+        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=email_exist");
+        die();
+    }
+
+    // cek apakah username sudah terdaftar
+    $sql = "SELECT * FROM `akun` WHERE `username` = '$username'";
+    $query = mysqli_query($db, $sql);
+    if ($query->num_rows > 0) {
+        // redirect back ke halaman daftar
+        header("Location: ".$app_url."/pages/form_signup.php?status=gagal&pesan=username_exist");
         die();
     }
 

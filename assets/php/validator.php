@@ -13,10 +13,10 @@ function valid_string($str) {
         $str)) ? FALSE : TRUE;
 }
 
-// cek apakah string terdiri dari huruf saja
+// cek apakah string terdiri dari huruf saja dan spasi
 function valid_alphabet($str){
     return (!preg_match(
-        "/^[a-zA-Z]+$/",$str
+        "/^[a-zA-Z\s]*$/",$str
     ))? FALSE:TRUE;
 }
 ?>
