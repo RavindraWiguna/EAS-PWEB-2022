@@ -17,7 +17,7 @@ check(-1);
     <?php include('components/navbar.php')?>
     <div class="main-gradient pt-5">
         <div class="container">
-            <div class="d-flex flex-column text-center text-white mt-4">
+            <div class="d-flex flex-column text-center text-white mt-4 mb-2">
                 <h5>Isi form dengan akun yang telah terdaftar</h5>
             </div>
             <?php
