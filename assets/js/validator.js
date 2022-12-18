@@ -159,13 +159,21 @@ function validateLogin(){
 }
 
 function showPassword(event) {
-    var x = document.getElementById("idpassword");
-    let icon = document.getElementsByClassName('show-icon-password')[0];
+    let x, icon;
+    if(event.path[0].tagName =='BUTTON'){
+        x = event.path[1].childNodes[1];
+        icon = event.path[0].childNodes[1];
+    }else{
+        // path[0] is img
+        x = event.path[2].childNodes[1];
+        icon = event.path[0];
+    }
+
     if (x.type === "password") {
         x.type = "text";
         icon.src ='../assets/media/eye-open.svg';
     } else {
         x.type = "password";
         icon.src ='../assets/media/eye-closed.svg';
-    }
+    }  
 }

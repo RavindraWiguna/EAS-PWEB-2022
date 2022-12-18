@@ -7,6 +7,8 @@
     <title>Daftar | Kementrian Kelautan dan Perikanan Prov.Jawa Timur</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
@@ -76,8 +78,8 @@
                         <label class="form-label text-black" for="password">Password</label>    
                         <div class="input-group">
                             <input type="password" name="password" class="form-control" placeholder="Password akun" id="idpassword"/>  
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showPassword()">
-                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px" class="show-pass-icon">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showPassword(event)">
+                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px">
                             </button>
                         </div>
                         <p id="msgpassword" class="text-danger"></p>
@@ -88,8 +90,8 @@
                         <label class="form-label text-black" for="c_password">Konfirmasi Password</label>    
                         <div class="input-group">
                             <input type="password" name="c_password" class="form-control" placeholder="Ketik ulang password anda" id="idc_password"/> 
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showPassword()">
-                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px" class="show-pass-icon">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon3" onclick="showPassword(event)">
+                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px">
                             </button>
                         </div>
                         <p id="msgc_password" class="text-danger"></p>

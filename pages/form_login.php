@@ -30,8 +30,8 @@
                         <label class="form-label text-black" for="password">Password</label>
                         <div class="input-group">
                             <input type="password" name="password" class="form-control" placeholder="Password akun" id="idpassword"/>
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showPassword()">
-                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px" class="show-pass-icon">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showPassword(event)">
+                                <img src="../assets/media/eye-closed.svg" alt="" style="width:16px">
                             </button>
                         </div>
                     </div>
