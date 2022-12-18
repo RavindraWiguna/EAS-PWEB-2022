@@ -138,7 +138,7 @@ function validateLogin(){
 function validateDataDiri(){
     // validasi nik, nama, tanggal lahir, tempat lahir, jenis kelamin, agama, status perkawinan
     let nik = document.getElementById('idnik').value;
-    let nama = document.getElementById('idnama').value;
+    let nama = document.getElementById('idnama_lengkap').value;
     let tempat_lahir = document.getElementById('idtempat_lahir').value;
     let tanggal_lahir = document.getElementById('idtanggal_lahir').value;
     let jenis_kelamin = document.getElementById('idjenis_kelamin').value;
@@ -147,6 +147,7 @@ function validateDataDiri(){
 
     if(nik=='' || nama=='' || tempat_lahir=='' || tanggal_lahir=='' || jenis_kelamin=='' || agama=='' || status_perkawinan==''){
         resetValidateMessage('form');
+        document.getElementById('msgform').scrollIntoView(false);
         return false;
     }
 
@@ -154,6 +155,7 @@ function validateDataDiri(){
     let numbers = /^[0-9]+$/;
     if(!numbers.test(nik)){
         resetValidateMessage('nik');
+        document.getElementById('msgnik').scrollIntoView(false);
         return false;
     }
 
@@ -161,6 +163,7 @@ function validateDataDiri(){
     let letters = /^[a-zA-Z\s]*$/;
     if(!letters.test(nama)){
         resetValidateMessage('nama');
+        document.getElementById('msgnama').scrollIntoView(false);
         return false;
     }
 
@@ -168,34 +171,39 @@ function validateDataDiri(){
     let umur = getAge(tanggal_lahir);
     if(umur < 18){
         resetValidateMessage('tanggal_lahir');
+        document.getElementById('msgtanggal_lahir').scrollIntoView(false);
         return false;
     }
 
     // validasi apakah tempat lahir hanya terdiri dari huruf dan spasi
     if(!letters.test(tempat_lahir)){
         resetValidateMessage('tempat_lahir');
+        document.getElementById('msgtempat_lahir').scrollIntoView(false);
         return false;
     }
 
     // validasi apakah jenis kelamin sudah dipilih
     if(jenis_kelamin==''){
         resetValidateMessage('jenis_kelamin');
+        document.getElementById('msgjenis_kelamin').scrollIntoView(false);
         return false;
     }
 
     // validasi apakah agama sudah dipilih
     if(agama==''){
         resetValidateMessage('agama');
+        document.getElementById('msgagama').scrollIntoView(false);
         return false;
     }
 
     // validasi apakah status perkawinan sudah dipilih
     if(status_perkawinan==''){
         resetValidateMessage('status_perkawinan');
+        document.getElementById('msgstatus_perkawinan').scrollIntoView(false);
         return false;
     }
 
-    return false;
+    return true;
 }
 
 

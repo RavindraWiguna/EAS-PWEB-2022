@@ -32,7 +32,7 @@
                         if(str_contains($_SERVER['REQUEST_URI'], 'user_dashboard')){
                             $is_actives['Dashboard'] = ' active';
                         }
-                        if(str_contains($_SERVER['REQUEST_URI'], 'form_datadiri')){
+                        if(str_contains($_SERVER['REQUEST_URI'], 'datadiri')){
                             $is_actives['Data Diri'] = ' active';
                         }
                         if(str_contains($_SERVER['REQUEST_URI'], 'berkas')){

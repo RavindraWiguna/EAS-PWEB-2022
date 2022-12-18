@@ -34,24 +34,28 @@ include('../assets/php/proses_ambil_datadiri.php');
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="nik">NIK</label>
                         <input type="text" name="nik" class="form-control" placeholder="NIK sessuai KTP" id="idnik"/>
+                        <p id="msgnik" class="text-danger"></p>
                     </div>
 
                     <!-- Nama -->   
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="nama_lengkap">Nama Lengkap</label>
                         <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama sessuai KTP" id="idnama_lengkap"/>
+                        <p id="msgnama_lengkap" class="text-danger"></p>
                     </div>
                     
                     <!-- Tanggal Lahir -->   
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="tanggal_lahir">Tanggal Lahir</label>
                         <input type="date" name="tanggal_lahir" class="form-control" id="idtanggal_lahir"/>
+                        <p id="msgtanggal_lahir" class="text-danger"></p>
                     </div>
 
                     <!-- Tempat Lahir -->   
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="nama_lengkap">Tempat Lahir</label>
                         <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat lahir sessuai KTP" id="idtempat_lahir"/>
+                        <p id="msgtempat_lahir" class="text-danger"></p>
                     </div>
 
                     <!-- Jenis Kelamin -->
@@ -61,6 +65,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                             <option value="Laki-laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
+                        <p id="msgjenis_kelamin" class="text-danger"></p>
                     </div>
 
                     <!-- Agama -->
@@ -74,6 +79,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                             <option value="Budha">Budha</option>
                             <option value="Konghucu">Konghucu</option>
                         </select>
+                        <p id="msgagama" class="text-danger"></p>
                     </div>
 
                     <!-- Status Perkawinan -->
@@ -85,6 +91,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                             <option value="Cerai Hidup">Cerai Hidup</option>
                             <option value="Cerai Mati">Cerai Mati</option>
                         </select>
+                        <p id="msgstatus_perkawinan" class="text-danger"></p>
                     </div>
 
                     <!-- submit -->
