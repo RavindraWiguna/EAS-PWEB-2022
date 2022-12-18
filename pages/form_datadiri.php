@@ -33,28 +33,44 @@ include('../assets/php/proses_ambil_datadiri.php');
                     <!-- NIK -->   
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="nik">NIK</label>
-                        <input type="text" name="nik" class="form-control" placeholder="NIK sessuai KTP" id="idnik"/>
+                        <input type="text" name="nik" class="form-control" placeholder="NIK sessuai KTP" id="idnik"
+                        <?php 
+                        $nik = $pendaftar['exist']? $pendaftar['nik'] : '';
+                        echo 'value="'.$nik.'"'; 
+                        ?>/>
                         <p id="msgnik" class="text-danger"></p>
                     </div>
 
                     <!-- Nama -->   
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama sessuai KTP" id="idnama_lengkap"/>
+                        <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama sessuai KTP" id="idnama_lengkap"
+                        <?php 
+                        $nama = $pendaftar['exist']? $pendaftar['nama'] : '';
+                        echo 'value="'.$nama.'"'; 
+                        ?>/>
                         <p id="msgnama_lengkap" class="text-danger"></p>
                     </div>
                     
                     <!-- Tanggal Lahir -->   
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="tanggal_lahir">Tanggal Lahir</label>
-                        <input type="date" name="tanggal_lahir" class="form-control" id="idtanggal_lahir"/>
+                        <input type="date" name="tanggal_lahir" class="form-control" id="idtanggal_lahir"
+                        <?php 
+                        $tgl = $pendaftar['exist']? $pendaftar['tanggal_lahir'] : '';
+                        echo 'value="'.$tgl.'"'; 
+                        ?>/>
                         <p id="msgtanggal_lahir" class="text-danger"></p>
                     </div>
 
                     <!-- Tempat Lahir -->   
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="nama_lengkap">Tempat Lahir</label>
-                        <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat lahir sessuai KTP" id="idtempat_lahir"/>
+                        <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat lahir sessuai KTP" id="idtempat_lahir"
+                        <?php 
+                        $tempat_lahir = $pendaftar['exist']? $pendaftar['tempat_lahir'] : '';
+                        echo 'value="'.$tempat_lahir.'"'; 
+                        ?>/>
                         <p id="msgtempat_lahir" class="text-danger"></p>
                     </div>
 
@@ -62,22 +78,70 @@ include('../assets/php/proses_ambil_datadiri.php');
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="jenis_kelamin">Jenis Kelamin</label>
                         <select class="form-select" name="jenis_kelamin" id="idjenis_kelamin">
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <?php
+                            $jenis_kelamin = $pendaftar['exist']? $pendaftar['jenis_kelamin'] : '';
+                            $laki_selected = $jenis_kelamin == 'Laki-laki'? 'selected' : '';
+                            $perempuan_selected = $jenis_kelamin == 'Perempuan'? 'selected' : '';
+                            $hidden_selected = $jenis_kelamin == ''? 'selected' : '';
+                            echo '
+                            <option value="" '.$hidden_selected.' disabled hidden>Pilih Jenis Kelamin</option>
+                            <option value="Laki-laki" '.$laki_selected.'>Laki-laki</option>
+                            <option value="Perempuan" '.$perempuan_selected.'>Perempuan</option>                    
+                            ';
+                            ?>
                         </select>
                         <p id="msgjenis_kelamin" class="text-danger"></p>
+                    </div>
+
+                    <!-- Alamat -->   
+                    <div class="form-outline mt-2">
+                        <label class="form-label text-black" for="alamat">Alamat</label>
+                        <input type="text" name="alamat" class="form-control" placeholder="Alamat sessuai KTP" id="idalamat"
+                        <?php 
+                        $alamat = $pendaftar['exist']? $pendaftar['alamat'] : '';
+                        echo 'value="'.$alamat.'"'; 
+                        ?>/>
+                        <p id="msgalamat" class="text-danger"></p>
                     </div>
 
                     <!-- Agama -->
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="agama">Agama</label>
                         <select class="form-select" name="agama" id="idagama">
-                            <option value="Islam">Islam</option>
-                            <option value="Kristen">Kristen</option>
-                            <option value="Katolik">Katolik</option>
-                            <option value="Hindu">Hindu</option>
-                            <option value="Budha">Budha</option>
-                            <option value="Konghucu">Konghucu</option>
+                            <?php
+                                $agama = $pendaftar['exist']? $pendaftar['agama'] : '';
+                                $data_agama = [
+                                    '',
+                                    'Islam',
+                                    'Kristen',
+                                    'Katolik',
+                                    'Hindu',
+                                    'Budha',
+                                    'Konghucu'
+                                ];
+
+                                $data_selected = [
+                                    '',
+                                    '',
+                                    '',
+                                    '',
+                                    '',
+                                    '',
+                                    ''
+                                ];
+                                foreach($data_agama as $temp){
+                                    $selected = $temp == $agama? 'selected' : '';
+                                    $data_selected[$temp] = $selected;
+                                }
+                                
+                                foreach($data_agama as $temp){
+                                    if($temp == ''){
+                                        echo '<option value="" '.$data_selected[$temp].' disabled hidden>Pilih Agama</option>';
+                                    }else{
+                                        echo '<option value="'.$temp.'" '.$data_selected[$temp].'>'.$temp.'</option>';
+                                    }
+                                }
+                            ?>
                         </select>
                         <p id="msgagama" class="text-danger"></p>
                     </div>
@@ -86,10 +150,38 @@ include('../assets/php/proses_ambil_datadiri.php');
                     <div class="form-outline mt-2">
                         <label class="form-label text-black" for="status_perkawinan">Status Perkawinan</label>
                         <select class="form-select" name="status_perkawinan" id="idstatus_perkawinan">
-                            <option value="Belum Kawin">Belum Kawin</option>
-                            <option value="Kawin">Kawin</option>
-                            <option value="Cerai Hidup">Cerai Hidup</option>
-                            <option value="Cerai Mati">Cerai Mati</option>
+                        <?php
+                                $status_perkawinan = $pendaftar['exist']? $pendaftar['status_perkawinan'] : '';
+                                $data_perkawinan = [
+                                    '',
+                                    'Belum Kawin',
+                                    'Kawin',
+                                    'Cerai Hidup',
+                                    'Cerai Mati'
+                                ];
+
+                                $data_selected = [
+                                    '',
+                                    '',
+                                    '',
+                                    '',
+                                    '',
+                                    '',
+                                    ''
+                                ];
+                                foreach($data_perkawinan as $temp){
+                                    $selected = $temp == $status_perkawinan? 'selected' : '';
+                                    $data_selected[$temp] = $selected;
+                                }
+                                
+                                foreach($data_perkawinan as $temp){
+                                    if($temp == ''){
+                                        echo '<option value="" '.$data_selected[$temp].' disabled hidden>Pilih Status Perkawinan</option>';
+                                    }else{
+                                        echo '<option value="'.$temp.'" '.$data_selected[$temp].'>'.$temp.'</option>';
+                                    }
+                                }
+                            ?>
                         </select>
                         <p id="msgstatus_perkawinan" class="text-danger"></p>
                     </div>

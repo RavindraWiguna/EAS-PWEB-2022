@@ -25,12 +25,13 @@ function resetValidateMessage(keep){
     let msgtanggal_lahir = document.getElementById('msgtanggal_lahir');
     let msgtempat_lahir = document.getElementById('msgtempat_lahir');
     let msgjenis_kelamin = document.getElementById('msgjenis_kelamin');
+    let msgalamat = document.getElementById('msgalamat');
     let msgagama = document.getElementById('msgagama');
     let msgstatus_perkawinan = document.getElementById('msgstatus_perkawinan');
 
     let arr = [msgemail,msgusername,msgpassword,msgc_password,msgnama_lengkap,msgform, 
                msgnik, msgtanggal_lahir, msgtempat_lahir, msgjenis_kelamin, msgagama, 
-               msgstatus_perkawinan];
+               msgstatus_perkawinan, msgalamat];
     
     for(let i=0;i<arr.length;i++){
         if(arr[i])
@@ -47,6 +48,7 @@ function resetValidateMessage(keep){
         'nik' : 'NIK harus terdiri dari 16 digit angka',
         'tanggal_lahir' : 'Tanggal lahir tidak valid',
         'tempat_lahir' : 'Tempat lahir tidak valid',
+        'alamat': 'Alamat tidak valid',
     };
 
     if(keep in arr_keep_msgs){
@@ -75,6 +77,7 @@ function validateSign(){
     || c_password == ''){
         // alert("Isi seluruh form dengan benar terlebih dahulu");
         resetValidateMessage('form');
+        document.getElementById('msgform').scrollIntoView(false);
         return false;
     }
 
@@ -85,6 +88,7 @@ function validateSign(){
     if(!letters.test(nama_lengkap)){
         document.getElementById('msgnama_lengkap').textContent='Nama hanya dapat terdiri dari huruf saja';
         resetValidateMessage('nama_lengkap');
+        document.getElementById('msgnama_lengkap').scrollIntoView(false);
         return false;
     }
 
@@ -92,6 +96,7 @@ function validateSign(){
         document.getElementById('msgemail').textContent='Email belum valid';
         // alert("Isikan email dengan benar");
         resetValidateMessage('email');
+        document.getElementById('msgemail').scrollIntoView(false);
         return false;
     }
     
@@ -99,6 +104,7 @@ function validateSign(){
         document.getElementById('msgusername').textContent='Username hanya boleh terdiri dari alpha-numerik';
         // alert("Username hanya boleh terdiri dari alpha-numerik");
         resetValidateMessage('username');
+        document.getElementById('msgusername').scrollIntoView(false);
         return false;        
     }
 
@@ -107,6 +113,7 @@ function validateSign(){
         document.getElementById('msgpassword').textContent='Password kurang dari 9 karakter';
         // alert("Password kurang dari 9 karakter");
         resetValidateMessage('password');
+        document.getElementById('msgpassword').scrollIntoView(false);
         return false;
     }
     
@@ -114,6 +121,7 @@ function validateSign(){
         document.getElementById('msgc_password').textContent='Password tidak sama';
         // alert("Password tidak sama");
         resetValidateMessage('c_password');
+        document.getElementById('msgc_password').scrollIntoView(false);
         return false;
     }
 
@@ -142,6 +150,7 @@ function validateDataDiri(){
     let tempat_lahir = document.getElementById('idtempat_lahir').value;
     let tanggal_lahir = document.getElementById('idtanggal_lahir').value;
     let jenis_kelamin = document.getElementById('idjenis_kelamin').value;
+    let alamat = document.getElementById('idalamat').value;
     let agama = document.getElementById('idagama').value;
     let status_perkawinan = document.getElementById('idstatus_perkawinan').value;
 
@@ -153,7 +162,7 @@ function validateDataDiri(){
 
     // validasi nik apakah terdiri dari angka saja dengan regex
     let numbers = /^[0-9]+$/;
-    if(!numbers.test(nik)){
+    if(!numbers.test(nik) || nik.length != 16){
         resetValidateMessage('nik');
         document.getElementById('msgnik').scrollIntoView(false);
         return false;
@@ -162,8 +171,8 @@ function validateDataDiri(){
     // validasi apakah nama hanya terdiri dari huruf dan spasi
     let letters = /^[a-zA-Z\s]*$/;
     if(!letters.test(nama)){
-        resetValidateMessage('nama');
-        document.getElementById('msgnama').scrollIntoView(false);
+        resetValidateMessage('nama_lengkap');
+        document.getElementById('msgnama_lengkap').scrollIntoView(false);
         return false;
     }
 
@@ -186,6 +195,15 @@ function validateDataDiri(){
     if(jenis_kelamin==''){
         resetValidateMessage('jenis_kelamin');
         document.getElementById('msgjenis_kelamin').scrollIntoView(false);
+        return false;
+    }
+
+    // validasi apakah alamat valid
+    // regex untuk alamat tidak boleh berisi karakter ?&%$#@!^*()_+|~=`{}[]:";'<>?/
+    let regex = /[?&%$#@!^*()_+|~=`{}[\]:";'<>?\/]/;
+    if(regex.test(alamat)){
+        resetValidateMessage('alamat');
+        document.getElementById('msgalamat').scrollIntoView(false);
         return false;
     }
 

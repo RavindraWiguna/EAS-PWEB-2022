@@ -24,11 +24,50 @@ include('../assets/php/proses_ambil_datadiri.php');
             <div class="d-flex flex-column text-center text-white mt-4">
                 <h5>Data Diri Anda</h5>
             </div>
-            <div class="bg-white rounded px-3 mx-auto">
+            <div class="bg-white rounded px-3 mx-auto my-form-box">
                 <div class="pt-2"></div>
                 <?php
-                if($pendaftar['exist']){
 
+                $show_names = [ 
+                    'nik' => 'NIK',
+                    'nama_lengkap' => 'Nama Lengkap',
+                    'tempat_lahir' => 'Tempat Lahir',
+                    'tanggal_lahir' => 'Tanggal Lahir',
+                    'jenis_kelamin' => 'Jenis Kelamin',
+                    'agama' => 'Agama',
+                    'status_perkawinan' => 'Status Perkawinan',
+                    'alamat' => 'Alamat',
+                ];
+
+                if($pendaftar['exist']){
+                    echo '
+                    <table class="table table-hover mx-auto">
+                    <thead>
+                        <tr>
+                        <th scope="col" class="text-center">Atribut</th>
+                        <th scope="col" class="text-center">Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    ';
+                    foreach($pendaftar as $key => $value){
+                        if(array_key_exists($key, $show_names)){
+                            $key = $show_names[$key];
+                            echo '
+                            <tr>
+                                <th scope="row">'.$key.'</th>
+                                <td>'.$value.'</td>
+                            </tr>
+                            ';
+                        }
+                    }
+                    echo '
+                    </tbody>
+                    </table>
+                    <div class="pb-3">
+                        <a href="form_datadiri.php" class="btn btn-primary">Sunting Data Diri</a>
+                    </div>
+                    ';
                 }else{
                     echo '
                     <div class="alert alert-danger pt-3 mt-3 text-center" role="alert">
@@ -41,6 +80,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                     ';
                 }
                 ?>
+
             </div>
         </div>
     </div>

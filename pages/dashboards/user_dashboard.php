@@ -37,6 +37,20 @@ check(1);
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
             }
+            // cek jika sukses update-data-diri
+            else if($_GET['pesan']=='update-data-diri'){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Selamat!</strong> Anda berhasil update data diri.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+            // cek jika sukses tambah-data-diri
+            else if($_GET['pesan']=='tambah-data-diri'){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Selamat!</strong> Anda berhasil menambah data diri.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
         }
         else if($_GET['status']=='gagal'){
             if($_GET['pesan']=='mendaftar'){
@@ -48,6 +62,20 @@ check(1);
             else if($_GET['pesan']=='login'){
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Maaf!</strong> Gagal Login
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+            // cek jika gagal update-data-diri
+            else if($_GET['pesan']=='update-data-diri'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf!</strong> Gagal Update Data Diri
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+            // cek jika gagal tambah-data-diri
+            else if($_GET['pesan']=='tambah-data-diri'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf!</strong> Gagal Menambah Data Diri
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
             }
