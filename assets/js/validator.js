@@ -161,6 +161,12 @@ function validateLogin(){
     return true;
 }
 
+function validateDataDiri(){
+    // alert('clicked');
+    return false;
+}
+
+
 function showPassword(event) {
     let x, icon;
     if(event.path[0].tagName =='BUTTON'){
