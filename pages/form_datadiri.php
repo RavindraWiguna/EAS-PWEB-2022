@@ -12,7 +12,7 @@
 </head>
 <body>
     <?php
-    include("../../assets/php/auth_checker.php");
+    include("../assets/php/auth_checker.php");
 
     check(1);
     ?>
@@ -20,7 +20,7 @@
     <div class="main-gradient pt-5">
         <div class="container">
             <div class="d-flex flex-column text-center text-white mt-4">
-                <h5>Isi form dengan akun yang telah terdaftar</h5>
+                <h5>Isi form dengan benar sesuai yang tertera pada KTP</h5>
             </div>
             <?php
             if(isset($_GET['status'])){
@@ -40,7 +40,7 @@
             }
             ?>
             <div class="bg-white rounded px-3 auth-box mx-auto">
-                <form method="POST" action="../assets/php/proses_login.php" onSubmit="return validateLogin()">
+                <form method="POST" action="../assets/php/proses_cu_datadiri.php" onSubmit="return validateDataDiri()">
                     <p id="msgform" class="text-danger pt-3"></p>
                     <!-- Email/Username input -->   
                     <div class="form-outline mt-1">

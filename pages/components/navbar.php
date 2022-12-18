@@ -23,18 +23,37 @@
                 else if($_SESSION['user_is_login']){
                     // cek apakah user atau admin
                     if($_SESSION['user']['privilege_level']<2){
+                        $is_actives=[
+                            'Dashboard' => '',
+                            'Data Diri' => '',
+                            'Berkas' => '',
+                            'Hasil' => '',
+                        ];
+                        if(str_contains($_SERVER['REQUEST_URI'], 'user_dashboard')){
+                            $is_actives['Dashboard'] = ' active';
+                        }
+                        if(str_contains($_SERVER['REQUEST_URI'], 'form_datadiri')){
+                            $is_actives['Data Diri'] = ' active';
+                        }
+                        if(str_contains($_SERVER['REQUEST_URI'], 'berkas')){
+                            $is_actives['Berkas'] = ' active';
+                        }
+                        if(str_contains($_SERVER['REQUEST_URI'], 'hasil')){
+                            $is_actives['Hasil'] = ' active';
+                        }
+
                         echo '
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="pages/dashboards/user_dashboard.php">Dashboard</a>
+                            <a class="nav-link '.$is_actives['Dashboard'].'" aria-current="page" href="pages/dashboards/user_dashboard.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Data Diri</a>
+                            <a class="nav-link '.$is_actives['Data Diri'].'" aria-current="page" href="pages/form_datadiri.php">Data Diri</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Berkas</a>
+                            <a class="nav-link '.$is_actives['Berkas'].'" aria-current="page" href="#">Berkas</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link '.$is_actives['Hasil'].' dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Hasil
                             </a>
                             <ul class="dropdown-menu">

@@ -12,6 +12,7 @@ $filelocations = [
     'form_signup.php'=>'/pages/form_signup.php',
     'pegawai_dashboard.php'=>'/pages/dashboards/pegawai_dashboard.php',
     'user_dashboard.php' => '/pages/dashboards/user_dashboard.php',
+    'form_datadiri.php' => '/pages/form_datadiri.php',
     'proses_logout.php' => '/assets/php/proses_logout.php',
 ];
 
