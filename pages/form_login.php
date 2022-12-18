@@ -16,6 +16,23 @@
             <div class="d-flex flex-column text-center text-white mt-4">
                 <h5>Isi form dengan akun yang telah terdaftar</h5>
             </div>
+            <?php
+            if(isset($_GET['status'])){
+                if($_GET['status'] == 'gagal'){
+                    if($_GET['pesan'] == 'password'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Gagal!</strong> Password yang anda masukkan salah.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    } else if($_GET['pesan'] == 'user_email'){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Gagal!</strong> Email/Username yang anda masukkan salah.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
+                }
+            }
+            ?>
             <div class="bg-white rounded px-3 auth-box mx-auto">
                 <form method="POST" action="../assets/php/proses_login.php" onSubmit="return validateLogin()">
                     <p id="msgform" class="text-danger pt-3"></p>

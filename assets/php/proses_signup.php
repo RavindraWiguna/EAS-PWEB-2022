@@ -69,10 +69,10 @@ if(isset($_POST['daftar'])){
     // apakah query simpan berhasil?
     if( $query ) {
         // kalau berhasil alihkan ke halaman index.php dengan status=sukses
-        header('Location: '.$app_url.'/index.php?status=sukses-mendaftar');
+        header('Location: '.$app_url.'/index.php?status=sukses&pesan=mendaftar');
     } else {
         // kalau gagal alihkan ke halaman index.php dengan status=gagal
-        header('Location: '.$app_url.'/index.php?status=gagal-mendaftar');
+        header('Location: '.$app_url.'/index.php?status=gagal&pesan=mendaftar');
     }
 
 } else {
