@@ -51,6 +51,15 @@ if(isset($_POST['isi_berkas'])){
     $path_berkas = str_replace("../..", "", $path_berkas);
     $path_foto = str_replace("../..", "", $path_foto);
 
+
+    // hapus file lama jika ada
+    if($pendaftar['path_foto']){
+        unlink("../../".$pendaftar['path_foto']);
+    }
+    if($pendaftar['path_berkas']){
+        unlink("../../".$pendaftar['path_berkas']);
+    }
+
     // jika berhasil upload berkas dan foto lanjut simpan path ke tabel pendaftar pada kolom path_berkas dan path_foto
     $sql = "UPDATE `pendaftar` SET `path_berkas` = '$path_berkas', `path_foto` = '$path_foto' WHERE id_akun=$id";
     $query = mysqli_query($db, $sql);

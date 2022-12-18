@@ -89,7 +89,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
-                                <a type="button" class="btn btn-danger">Ya, saya yakin</a>
+                                <a href="form_berkas.php" class="btn btn-danger">Ya, saya yakin</a>
                             </div>
                             </div>
                         </div>
