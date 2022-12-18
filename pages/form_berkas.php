@@ -24,171 +24,32 @@ include('../assets/php/proses_ambil_datadiri.php');
     <div class="main-gradient pt-5">
         <div class="container">
             <div class="d-flex flex-column text-center text-white mt-4 mb-2">
-                <h5>Isi form dengan benar sesuai yang tertera pada KTP</h5>
+                <h5>Unggah berkas yang diperlukan</h5>
             </div>
             <div class="bg-white rounded px-3 my-form-box mx-auto">
-                <form method="POST" action="../assets/php/proses_cu_datadiri.php" onSubmit="return validateDataDiri()">
+                <form method="POST" action="../assets/php/proses_cu_datadiri.php" onSubmit="return validateBerkas()" enctype="multipart/form-data">
                     <p id="msgform" class="text-danger pt-3"></p>
-                    
-                    <!-- NIK -->   
+
+                    <!-- berkas -->
                     <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="nik">NIK</label>
-                        <input type="text" name="nik" class="form-control" placeholder="NIK sessuai KTP" id="idnik"
-                        <?php 
-                        $nik = $pendaftar['exist']? $pendaftar['nik'] : '';
-                        echo 'value="'.$nik.'"'; 
-                        ?>/>
-                        <p id="msgnik" class="text-danger"></p>
+                        <label for="berkas" class="form-label">Berkas (Scan Foto KTP Berwarna dan Ijazah berformat pdf di compress ke dalam format .rar/zip)</label>
+                        <input class="form-control" type="file" name="berkas" id="idberkas" accept=".rar, .zip">
+                        <div id="" class="form-text">Ukuran maksimal 1MB</div>
+                        <p id="msgberkas" class="text-danger"></p>
                     </div>
 
-                    <!-- Nama -->   
+                    <!-- pas foto -->
                     <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" name="nama_lengkap" class="form-control" placeholder="Nama sessuai KTP" id="idnama_lengkap"
-                        <?php 
-                        $nama = $pendaftar['exist']? $pendaftar['nama'] : '';
-                        echo 'value="'.$nama.'"'; 
-                        ?>/>
-                        <p id="msgnama_lengkap" class="text-danger"></p>
-                    </div>
-                    
-                    <!-- Tanggal Lahir -->   
-                    <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="tanggal_lahir">Tanggal Lahir</label>
-                        <input type="date" name="tanggal_lahir" class="form-control" id="idtanggal_lahir"
-                        <?php 
-                        $tgl = $pendaftar['exist']? $pendaftar['tanggal_lahir'] : '';
-                        echo 'value="'.$tgl.'"'; 
-                        ?>/>
-                        <p id="msgtanggal_lahir" class="text-danger"></p>
-                    </div>
-
-                    <!-- Tempat Lahir -->   
-                    <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="nama_lengkap">Tempat Lahir</label>
-                        <input type="text" name="tempat_lahir" class="form-control" placeholder="Tempat lahir sessuai KTP" id="idtempat_lahir"
-                        <?php 
-                        $tempat_lahir = $pendaftar['exist']? $pendaftar['tempat_lahir'] : '';
-                        echo 'value="'.$tempat_lahir.'"'; 
-                        ?>/>
-                        <p id="msgtempat_lahir" class="text-danger"></p>
-                    </div>
-
-                    <!-- Jenis Kelamin -->
-                    <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="jenis_kelamin">Jenis Kelamin</label>
-                        <select class="form-select" name="jenis_kelamin" id="idjenis_kelamin">
-                            <?php
-                            $jenis_kelamin = $pendaftar['exist']? $pendaftar['jenis_kelamin'] : '';
-                            $laki_selected = $jenis_kelamin == 'Laki-laki'? 'selected' : '';
-                            $perempuan_selected = $jenis_kelamin == 'Perempuan'? 'selected' : '';
-                            $hidden_selected = $jenis_kelamin == ''? 'selected' : '';
-                            echo '
-                            <option value="" '.$hidden_selected.' disabled hidden>Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki" '.$laki_selected.'>Laki-laki</option>
-                            <option value="Perempuan" '.$perempuan_selected.'>Perempuan</option>                    
-                            ';
-                            ?>
-                        </select>
-                        <p id="msgjenis_kelamin" class="text-danger"></p>
-                    </div>
-
-                    <!-- Alamat -->   
-                    <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="alamat">Alamat</label>
-                        <input type="text" name="alamat" class="form-control" placeholder="Alamat sessuai KTP" id="idalamat"
-                        <?php 
-                        $alamat = $pendaftar['exist']? $pendaftar['alamat'] : '';
-                        echo 'value="'.$alamat.'"'; 
-                        ?>/>
-                        <p id="msgalamat" class="text-danger"></p>
-                    </div>
-
-                    <!-- Agama -->
-                    <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="agama">Agama</label>
-                        <select class="form-select" name="agama" id="idagama">
-                            <?php
-                                $agama = $pendaftar['exist']? $pendaftar['agama'] : '';
-                                $data_agama = [
-                                    '',
-                                    'Islam',
-                                    'Kristen',
-                                    'Katolik',
-                                    'Hindu',
-                                    'Budha',
-                                    'Konghucu'
-                                ];
-
-                                $data_selected = [
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    ''
-                                ];
-                                foreach($data_agama as $temp){
-                                    $selected = $temp == $agama? 'selected' : '';
-                                    $data_selected[$temp] = $selected;
-                                }
-                                
-                                foreach($data_agama as $temp){
-                                    if($temp == ''){
-                                        echo '<option value="" '.$data_selected[$temp].' disabled hidden>Pilih Agama</option>';
-                                    }else{
-                                        echo '<option value="'.$temp.'" '.$data_selected[$temp].'>'.$temp.'</option>';
-                                    }
-                                }
-                            ?>
-                        </select>
-                        <p id="msgagama" class="text-danger"></p>
-                    </div>
-
-                    <!-- Status Perkawinan -->
-                    <div class="form-outline mt-2">
-                        <label class="form-label text-black" for="status_perkawinan">Status Perkawinan</label>
-                        <select class="form-select" name="status_perkawinan" id="idstatus_perkawinan">
-                        <?php
-                                $status_perkawinan = $pendaftar['exist']? $pendaftar['status_perkawinan'] : '';
-                                $data_perkawinan = [
-                                    '',
-                                    'Belum Kawin',
-                                    'Kawin',
-                                    'Cerai Hidup',
-                                    'Cerai Mati'
-                                ];
-
-                                $data_selected = [
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    ''
-                                ];
-                                foreach($data_perkawinan as $temp){
-                                    $selected = $temp == $status_perkawinan? 'selected' : '';
-                                    $data_selected[$temp] = $selected;
-                                }
-                                
-                                foreach($data_perkawinan as $temp){
-                                    if($temp == ''){
-                                        echo '<option value="" '.$data_selected[$temp].' disabled hidden>Pilih Status Perkawinan</option>';
-                                    }else{
-                                        echo '<option value="'.$temp.'" '.$data_selected[$temp].'>'.$temp.'</option>';
-                                    }
-                                }
-                            ?>
-                        </select>
-                        <p id="msgstatus_perkawinan" class="text-danger"></p>
+                        <label for="pasfoto" class="form-label">Pas Foto (4x6 Berwarna berformat .png/jpg/jpeg)</label>
+                        <input class="form-control" type="file" name="pasfoto" id="idpasfoto" accept=".png, .jpg, .jpeg" onchange="loadFile(event)">
+                        <div id="" class="form-text">Ukuran maksimal 100KB</div>
+                        <img src="" alt="" id="preview">
+                        <p id="msgpasfoto" class="text-danger"></p>
                     </div>
 
                     <!-- submit -->
                     <div class="d-flex justify-content-between mt-3">
-                        <input type="submit" class="btn btn-primary btn-block mb-4" name="isi_data_diri" value="Selesai"/>         
+                        <input type="submit" class="btn btn-primary btn-block mb-4" name="isi_berkas" value="Selesai"/>         
                     </div>
                 </form>
             </div>

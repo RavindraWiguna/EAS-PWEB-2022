@@ -13,7 +13,7 @@ function getAge(dateString)
 }
 
 // reset validate message except keep
-function resetValidateMessage(keep){
+function resetValidateMessage(keep, custom_msg=null){
     let msgemail = document.getElementById('msgemail');
     let msgusername = document.getElementById('msgusername');
     let msgpassword = document.getElementById('msgpassword');
@@ -29,9 +29,12 @@ function resetValidateMessage(keep){
     let msgagama = document.getElementById('msgagama');
     let msgstatus_perkawinan = document.getElementById('msgstatus_perkawinan');
 
+    let msgberkas = document.getElementById('msgberkas');
+    let msgpasfoto = document.getElementById('msgpasfoto');
+
     let arr = [msgemail,msgusername,msgpassword,msgc_password,msgnama_lengkap,msgform, 
                msgnik, msgtanggal_lahir, msgtempat_lahir, msgjenis_kelamin, msgagama, 
-               msgstatus_perkawinan, msgalamat];
+               msgstatus_perkawinan, msgalamat, msgberkas, msgpasfoto];
     
     for(let i=0;i<arr.length;i++){
         if(arr[i])
@@ -49,9 +52,17 @@ function resetValidateMessage(keep){
         'tanggal_lahir' : 'Tanggal lahir tidak valid',
         'tempat_lahir' : 'Tempat lahir tidak valid',
         'alamat': 'Alamat tidak valid',
+        'agama' : 'Agama tidak valid',
+        'status_perkawinan' : 'Status perkawinan tidak valid',
+        'jenis_kelamin' : 'Jenis kelamin tidak valid',
+        'berkas' : 'Berkas belum lengkap',
+        'pasfoto' : 'Pasfoto belum lengkap'
     };
 
     if(keep in arr_keep_msgs){
+        if(custom_msg){
+            arr_keep_msgs[keep] = custom_msg;
+        }
         document.getElementById('msg'+keep).textContent = arr_keep_msgs[keep];
     }
 }
@@ -243,4 +254,56 @@ function showPassword(event) {
         x.type = "password";
         icon.src ='../assets/media/eye-closed.svg';
     }  
+}
+
+function validateBerkas(){
+    // cek apakah format file yang diunggah telah sesuai jika id input adalah idberkas
+    let berkas = document.getElementById('idberkas');
+    let file = berkas.files[0];
+    let filename = file.name;
+    let ext = filename.split('.').pop().toLowerCase();
+    if(ext != 'rar' && ext != 'zip'){
+        resetValidateMessage('berkas', 'Format file yang diunggah tidak sesuai. Format yang diperbolehkan adalah .rar atau .zip');
+        document.getElementById('msgberkas').scrollIntoView(false);
+        return false;
+    }
+
+    // cek ukuran dari berkas apakah melebihi 1MB
+    let size = file.size;
+    if(size > 1000000){
+        resetValidateMessage('berkas', 'Ukuran file yang diunggah melebihi 1MB');
+        document.getElementById('msgberkas').scrollIntoView(false);
+        return false;
+    }
+
+    // cek apakah format file foto yang telah diunggah sesuai jika id input adalah idpasfoto
+    let pasfoto = document.getElementById('idpasfoto');
+    let file2 = pasfoto.files[0];
+    let filename2 = file2.name;
+    let ext2 = filename2.split('.').pop().toLowerCase();
+    if(ext2 != 'jpg' && ext2 != 'jpeg' && ext2 != 'png'){
+        resetValidateMessage('pasfoto', 'Format file yang diunggah tidak sesuai. Format yang diperbolehkan adalah .jpg, .jpeg, atau .png');
+        document.getElementById('msgpasfoto').scrollIntoView(false);
+        return false;
+    }
+
+    // cek apakah ukuran file foto di atas 100KB
+    let size2 = file2.size;
+    if(size2 > 100000){
+        resetValidateMessage('pasfoto', 'Ukuran pas foto yang diunggah melebihi 100KB, harap dicompress terlebih dahulu');
+        document.getElementById('msgpasfoto').scrollIntoView(false);
+        return false;
+    }
+
+    return false;
+}
+
+
+function loadFile(event){
+    let output = document.getElementById('preview');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    // output.onload = function() {
+    //     URL.revokeObjectURL(output.src); // free memory      
+    // };
+    output.style = 'width:320px; margin-bottom:10px';
 }
