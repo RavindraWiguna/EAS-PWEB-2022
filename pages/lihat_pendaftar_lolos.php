@@ -25,13 +25,22 @@ include('../assets/php/proses_ambil_lolos.php');
                 <h5>Data Pendaftar Lolos Verifikasi</h5>
                 <h6>Klik pada ID/Nama pendaftar untuk melihat detail</h6>
             </div>
-            <div class="bg-white rounded px-3 mx-auto my-form-box shadow">
+            <div class="bg-white rounded px-3 mx-auto shadow">
                 <div class="pt-2"></div>
                 <?php
-
-                $show_names = [
-                    'id' => 'ID',
-                    'nama' => 'Nama Lengkap',
+                $map_nama_bulan = [
+                    '01' => 'Januari',
+                    '02' => 'Februari',
+                    '03' => 'Maret',
+                    '04' => 'April',
+                    '05' => 'Mei',
+                    '06' => 'Juni',
+                    '07' => 'Juli',
+                    '08' => 'Agustus',
+                    '09' => 'September',
+                    '10' => 'Oktober',
+                    '11' => 'November',
+                    '12' => 'Desember'
                 ];
 
                 $chunk_pendaftar = get_chunk_pendaftar();
@@ -42,15 +51,33 @@ include('../assets/php/proses_ambil_lolos.php');
                         <tr>
                         <th scope="col" class="text-center">ID</th>
                         <th scope="col" class="text-center">Nama</th>
+                        <th scope="col" class="text-center">Lokasi Ujian</th>
+                        <th scope="col" class="text-center">Tanggal Ujian</th>
+                        <th scope="col" class="text-center">Waktu Ujian Mulai</th>
+                        <th scope="col" class="text-center">Waktu Ujian Selesai</th>
                         </tr>
                     </thead>
                     <tbody>
                     ';
                     foreach($chunk_pendaftar as $key => $value){
+                        // convert tanggal ujian pada value dari format yyyy-mm-dd menjadi dd-mm-yyyy
+                        $tanggal_ujian = explode('-', $value['tanggal_ujian']);
+                        $tanggal_ujian = $tanggal_ujian[2].' '.$map_nama_bulan[$tanggal_ujian[1]].' '.$tanggal_ujian[0];
+
+                        // convert waktu dari format hh:mm::ss ke hh:mm
+                        $waktu_mulai = explode(':', $value['waktu_mulai']);
+                        $waktu_mulai = $waktu_mulai[0].':'.$waktu_mulai[1];
+                        $waktu_selesai = explode(':', $value['waktu_selesai']);
+                        $waktu_selesai = $waktu_selesai[0].':'.$waktu_selesai[1];
+
                         echo '
                         <tr>
                             <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['id'].'</a></th>
                             <td><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['nama'].'</a></td>
+                            <td>'.$value['nama_dinas'].'<br>'.$value['alamat_dinas'].'</td>
+                            <td>'.$tanggal_ujian.'</td>
+                            <td>'.$waktu_mulai.' WIB</td>
+                            <td>'.$waktu_selesai.' WIB</td>
                         </tr>
                         ';
                     }
