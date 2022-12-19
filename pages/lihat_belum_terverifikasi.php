@@ -23,30 +23,8 @@ include('../assets/php/proses_ambil_belum_terverifikasi.php');
         <div class="container">
             <div class="d-flex flex-column text-center text-white mt-4 mb-2">
                 <h5>Data Pendaftar Belum Terverifikasi</h5>
+                <h6>Klik pada ID/Nama pendaftar untuk melihat detail dan memverifikasi pendaftar</h6>
             </div>
-            <?php
-            // cek apakah ada pesan gagal meloloskan peserta atau menggagalkan peserta
-            if(isset($_GET['status'])){
-                if($_GET['status'] == 'gagal'){
-                    if($_GET['pesan']== 'gagal'){
-                        echo '
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Gagal!</strong> Pendaftar gagal digagalkan.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        ';
-                    }
-                    else if($_GET['pesan']== 'lolos'){
-                        echo '
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Gagal!</strong> Pendaftar gagal diloloskan.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        ';
-                    }
-                }
-            }
-            ?>
             <div class="bg-white rounded px-3 mx-auto my-form-box shadow">
                 <div class="pt-2"></div>
                 <?php
@@ -57,28 +35,37 @@ include('../assets/php/proses_ambil_belum_terverifikasi.php');
                 ];
 
                 $chunk_pendaftar = get_chunk_pendaftar();
-                echo '
-                <table class="table table-hover mx-auto">
-                <thead>
-                    <tr>
-                    <th scope="col" class="text-center">ID</th>
-                    <th scope="col" class="text-center">Nama</th>
-                    </tr>
-                </thead>
-                <tbody>
-                ';
-                foreach($chunk_pendaftar as $key => $value){
+                if(sizeof($chunk_pendaftar) > 0){
                     echo '
-                    <tr>
-                        <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black">'.$value['id'].'</a></th>
-                        <td>'.$value['nama'].'</td>
-                    </tr>
+                    <table class="table table-hover mx-auto">
+                    <thead>
+                        <tr>
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">Nama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     ';
+                    foreach($chunk_pendaftar as $key => $value){
+                        echo '
+                        <tr>
+                            <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['id'].'</a></th>
+                            <td><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['nama'].'</a></td>
+                        </tr>
+                        ';
+                    }
+                    echo '
+                    </tbody>
+                    </table>
+                    ';
+                }else{
+                    echo '
+                    <div class="d-flex flex-column text-center text-black mt-4 mb-2">
+                        <h5>Tidak ada pendaftar yang belum terverifikasi</h5>
+                    </div>
+                    ';  
                 }
-                echo '
-                </tbody>
-                </table>
-                ';
+
                 ?>
                 <nav aria-label="Page navigation example" class="pb-1">
                     <ul class="pagination">
@@ -110,14 +97,14 @@ include('../assets/php/proses_ambil_belum_terverifikasi.php');
             var total_data = <?php echo get_total_data();?>;
             var max_page = Math.ceil(total_data/show);
             if(page == 1){
-                prev.href = "lihat_seluruh_pendaftar.php?page=1&show="+(show);
+                prev.href = "lihat_belum_terverifikasi.php?page=1&show="+(show);
             }else{
-                prev.href = "lihat_seluruh_pendaftar.php?page="+(page-1)+"&show="+(show);
+                prev.href = "lihat_belum_terverifikasi.php?page="+(page-1)+"&show="+(show);
             }
             if(page == max_page){
-                next.href = "lihat_seluruh_pendaftar.php?page="+max_page+"&show="+(show);
+                next.href = "lihat_belum_terverifikasi.php?page="+max_page+"&show="+(show);
             }else{
-                next.href = "lihat_seluruh_pendaftar.php?page="+(page+1)+"&show="+(show);
+                next.href = "lihat_belum_terverifikasi.php?page="+(page+1)+"&show="+(show);
             }
         }
         changehref();

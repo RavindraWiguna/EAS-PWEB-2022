@@ -36,6 +36,29 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                 ?>
                 </h5>
             </div>
+            <?php
+            // cek apakah ada pesan gagal meloloskan peserta atau menggagalkan peserta
+            if(isset($_GET['status'])){
+                if($_GET['status'] == 'gagal'){
+                    if($_GET['pesan']== 'gagal'){
+                        echo '
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> Pendaftar gagal digagalkan.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }
+                    else if($_GET['pesan']== 'lolos'){
+                        echo '
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> Pendaftar gagal diloloskan.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }
+                }
+            }
+            ?>
             <div class="bg-white rounded px-3 mx-auto my-form-box shadow">
                 <div class="pt-2"></div>
                 <?php
@@ -50,6 +73,18 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     'status_perkawinan' => 'Status Perkawinan',
                     'alamat' => 'Alamat',
                     'kualifikasi_pendidikan' => 'Kualifikasi Pendidikan',
+                ];
+
+                $map_status = [
+                    -1 => 'Gagal ke tahap selanjutnya',
+                    0 => 'Belum Terverifikasi',
+                    1 => 'Lolos ke tahap selanjutnya',
+                ];
+
+                $map_class_status = [
+                    -1 => 'table-danger',
+                    0 => 'table-warning',
+                    1 => 'table-success',
                 ];
 
                 if($pendaftar['exist']){
@@ -74,6 +109,13 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                             ';
                         }
                     }
+                    echo '
+                    <tr>
+                        <th scope="row" class="table-dark">Status Pendaftaran</th>
+                        <td class="'.$map_class_status[$pendaftar['status_pendaftaran']].'">'.$map_status[$pendaftar['status_pendaftaran']].'</td>
+                    </tr>
+                    ';
+
                     // $basename = basename($pendaftar['path_foto']);
                     // $ext = pathinfo($basename, PATHINFO_EXTENSION);
                     // $nama_file_foto = $pendaftar['id'].'_'.$pendaftar['nama'].'_foto.'.$ext;
@@ -88,7 +130,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                             </div>
                         </div>
                         <div class="">
-                            <p>Foto</p>
+                            <p>Pas Foto</p>
                             <img src="'.$app_url.$pendaftar['path_foto'].'" alt="" style="width:50%; margin-bottom:10px">
                             <div class="pb-3 d-grid">
                                 <a href="'.$app_url.$pendaftar['path_foto'].'" class="btn btn-info" download="">Unduh</a>
@@ -99,13 +141,31 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         <div>
                             <a class="btn btn-primary btn-block mb-4" href="javascript:history.back()">Kembali</a>
                         </div>
-                        <div>
-                            <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            ✕ Tidak memenuhi syarat
-                            </button>
-                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                            ✓ Memenuhi syarat
-                            </button>
+                        <div>';
+                    if($pendaftar['status_pendaftaran'] == 0){
+                        echo '
+                        <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        ✕ Tidak memenuhi syarat
+                        </button>
+                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        ✓ Memenuhi syarat
+                        </button>
+                        ';
+                    }else if($pendaftar['status_pendaftaran'] == 1){
+                        echo '
+                        <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        ✕ Ganti status ke tidak memenuhi syarat
+                        </button>
+                        ';
+                    }else if($pendaftar['status_pendaftaran'] == -1){
+                        echo '
+                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        ✓ Ganti status ke memenuhi syarat
+                        </button>
+                        ';
+                    }
+
+                    echo '
                         </div>
                     </div>
                     <!-- Modal -->
@@ -123,7 +183,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
-                            <a href="proses_gagalkan_pendaftar.php" class="btn btn-danger">Ya, saya yakin</a>
+                            <a href="../assets/php/proses_gagalkan_pendaftar.php" class="btn btn-danger">Ya, saya yakin</a>
                         </div>
                         </div>
                     </div>
@@ -142,7 +202,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
-                            <a href="proses_loloskan_pendaftar.php" class="btn btn-success">Ya, saya yakin</a>
+                            <a href="../assets/php/proses_loloskan_pendaftar.php" class="btn btn-success">Ya, saya yakin</a>
                         </div>
                         </div>
                     </div>

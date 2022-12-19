@@ -23,6 +23,7 @@ include('../assets/php/proses_ambil_pendaftar.php');
         <div class="container">
             <div class="d-flex flex-column text-center text-white mt-4 mb-2">
                 <h5>Data Seluruh Pendaftar</h5>
+                <h6>Klik pada ID/Nama untuk melihat detail</h6>
             </div>
             <div class="bg-white rounded px-3 mx-auto my-form-box shadow">
                 <div class="pt-2"></div>
@@ -47,8 +48,8 @@ include('../assets/php/proses_ambil_pendaftar.php');
                 foreach($chunk_pendaftar as $key => $value){
                     echo '
                     <tr>
-                        <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black">'.$value['id'].'</a></th>
-                        <td>'.$value['nama'].'</td>
+                        <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['id'].'</a></th>
+                        <td><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['nama'].'</a></td>
                     </tr>
                     ';
                 }
