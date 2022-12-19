@@ -73,6 +73,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     echo '
                     </tbody>
                     </table>
+                    <a class="btn btn-primary btn-block mb-4" href="javascript:history.back()">Kembali</a>
                     ';
                 }else{
                     echo '
