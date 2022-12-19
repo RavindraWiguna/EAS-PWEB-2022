@@ -74,6 +74,8 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     'status_perkawinan' => 'Status Perkawinan',
                     'alamat' => 'Alamat',
                     'kualifikasi_pendidikan' => 'Kualifikasi Pendidikan',
+                    'nama_unit_kerja' => 'Unit Kerja',
+                    'lokasi_joined' => 'Lokasi Pilihan',
                 ];
 
                 $map_status = [
