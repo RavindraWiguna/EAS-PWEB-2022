@@ -1,10 +1,10 @@
 <?php
 include("../assets/php/auth_checker.php");
-check(1);
+check(2);
 ?>
 <?php
 include("../config.php");
-include('../assets/php/proses_ambil_datadiri.php');
+include('../assets/php/proses_ambil_satu_pendaftar.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,15 @@ include('../assets/php/proses_ambil_datadiri.php');
     <div class="main-gradient pt-5">
         <div class="container">
             <div class="d-flex flex-column text-center text-white mt-4 mb-2">
-                <h5>Data Diri Anda</h5>
+                <h5>Data Diri <br>
+                <?php
+                if($pendaftar['exist']){
+                    echo $pendaftar['nama'];
+                }else{
+                    echo 'Tidak Ditemukan';
+                }
+                ?>
+                </h5>
             </div>
             <div class="bg-white rounded px-3 mx-auto my-form-box shadow">
                 <div class="pt-2"></div>
@@ -65,20 +73,12 @@ include('../assets/php/proses_ambil_datadiri.php');
                     echo '
                     </tbody>
                     </table>
-                    <div class="pb-3 d-grid">
-                        <a href="form_datadiri.php" class="btn btn-primary">Sunting Data Diri</a>
-                    </div>
                     ';
                 }else{
                     echo '
                     <div class="alert alert-danger pt-3 mt-3 text-center" role="alert">
-                        Anda belum mengisi data diri, silahkan isi data diri anda terlebih dahulu
+                        Tidak Ditemukan
                     </div>';
-                    echo '
-                    <div class="d-flex justify-content-center pb-3">
-                        <a href="form_datadiri.php" class="btn btn-primary">Isi Data Diri</a>
-                    </div>
-                    ';
                 }
                 ?>
 

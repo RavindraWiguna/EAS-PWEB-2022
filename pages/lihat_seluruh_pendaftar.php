@@ -47,7 +47,7 @@ include('../assets/php/proses_ambil_pendaftar.php');
                 foreach($chunk_pendaftar as $key => $value){
                     echo '
                     <tr>
-                        <th scope="row"><a href="" class="text-black">'.$value['id'].'</a></th>
+                        <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black">'.$value['id'].'</a></th>
                         <td>'.$value['nama'].'</td>
                     </tr>
                     ';

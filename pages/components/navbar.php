@@ -62,7 +62,7 @@
                             <a class="nav-link '.$is_actives['Dashboard'].'" aria-current="page" href="pages/dashboards/pegawai_dashboard.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="pages/lihat_seluruh_pendaftar.php">Data Seluruh Pendaftar</a>
+                            <a class="nav-link" aria-current="page" href="pages/lihat_seluruh_pendaftar.php?page=1&show=25">Data Seluruh Pendaftar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Verifikasi Pendaftar</a>

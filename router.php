@@ -3,6 +3,8 @@
 $request = $_SERVER['REQUEST_URI'];
 $app_url = 'http://localhost/kelautan';
 
+// exit($request);
+
 if(!session_id()) session_start();
 $_SESSION['app_url'] = $app_url;
 
@@ -20,6 +22,7 @@ $filelocations = [
     'cetak_kartu_ujian.php' => '/assets/php/cetak_kartu_ujian.php',
     'proses_logout.php' => '/assets/php/proses_logout.php',
     'lihat_seluruh_pendaftar.php' => '/pages/lihat_seluruh_pendaftar.php?page=1&show=25',
+    'lihat_pendaftar.php' => '/pages/lihat_pendaftar.php?id=1',
 ];
 
 function redirector($filename, $app, $files){
@@ -42,6 +45,18 @@ if(str_contains($request, $app_url)){
 
 foreach($filelocations as $filename => $Location){
     if(str_contains($request, $filename)){
+        // cek apakah ini page yang perlu get?
+        if(str_contains($Location, '?')){
+            $posisi_query = strpos($request, '?');
+            $posisi_default_query = strpos($Location, '?');
+            $prefixLoc = substr($Location, 0, $posisi_default_query);
+            $request_query = substr($request, $posisi_query);
+            $temp = join('', [$prefixLoc, $request_query]);
+            // echo $prefixLoc.'------'.$request.'----1-';
+            // echo $temp;
+            $filelocations[$filename] = $temp;
+        }
+
         redirector($filename, $app_url, $filelocations);
         exit();
     }
