@@ -15,6 +15,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
     <title>Pendaftaran Pegawai Kementrian Kelautan dan Perikanan</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
@@ -144,7 +145,9 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     </div>
                     <div class="d-flex justify-content-between">
                         <div>
-                            <a class="btn btn-primary btn-block mb-4" href="javascript:history.back()">Kembali</a>
+                            <button type="button" class="btn btn-dark mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Hapus Data
+                            </button>
                         </div>
                         <div>';
                     if($pendaftar['status_pendaftaran'] == 0){
@@ -173,7 +176,10 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     echo '
                         </div>
                     </div>
-                    <!-- Modal -->
+                    <div>
+                        <a class="btn btn-primary btn-block mb-4" href="javascript:history.back()">← Kembali</a>
+                    </div>
+                    <!-- Modal1 -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -193,6 +199,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         </div>
                     </div>
                     </div>
+                    <!-- Modal2 -->
                     <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -208,6 +215,26 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
                             <a href="../assets/php/proses_loloskan_pendaftar.php" class="btn btn-success">Ya, saya yakin</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Modal3 -->
+                    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Anda yakin menghapus data peserta ini?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" role="alert">
+                                Harap dicek dengan seksama sebelum membuat keputusan
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
+                            <a href="../assets/php/proses_hapus_pendaftar.php" class="btn btn-danger">Ya, saya yakin</a>
                         </div>
                         </div>
                     </div>

@@ -37,6 +37,13 @@ check(2);
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
             }
+            // cek apakah berhasil menghapus data
+            else if($_GET['pesan']=='hapus'){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>!!!</strong> Anda berhasil menghapus data.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
         }
         else if($_GET['status']=='gagal'){
             if($_GET['pesan']=='mendaftar'){

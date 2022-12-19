@@ -25,7 +25,7 @@ check(0);
         if($_GET['status']=='sukses'){
             if($_GET['pesan']=='mendaftar'){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Selamat!</strong> Anda berhasil mendaftar.
+                <strong>Selamat!</strong> Anda berhasil mendaftar, silahkan login.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
             }
