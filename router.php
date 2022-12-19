@@ -19,11 +19,11 @@ $filelocations = [
     'lihat_berkas.php' => '/pages/lihat_berkas.php',
     'form_berkas.php' => '/pages/form_berkas.php',
     'lihat_hasil.php' => '/pages/lihat_hasil.php',
-    // 'cetak_kartu_ujian.php' => '/assets/php/cetak_kartu_ujian.php',
     'proses_logout.php' => '/assets/php/proses_logout.php',
     'lihat_seluruh_pendaftar.php' => '/pages/lihat_seluruh_pendaftar.php?page=1&show=25',
     'lihat_pendaftar.php' => '/pages/lihat_pendaftar.php?id=1',
     'lihat_belum_terverifikasi.php' => '/pages/lihat_belum_terverifikasi.php?page=1&show=25',
+    'lihat_pendaftar_lolos.php' => '/pages/lihat_pendaftar_lolos.php?page=1&show=25',
 ];
 
 function redirector($filename, $app, $files){

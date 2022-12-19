@@ -81,7 +81,7 @@
                             <a class="nav-link '.$is_actives['Verifikasi'].'" aria-current="page" href="pages/lihat_belum_terverifikasi.php?page=1&show=25">Verifikasi Pendaftar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link '.$is_actives['Lolos'].'" aria-current="page" href="#">Data Pendaftar Lolos</a>
+                            <a class="nav-link '.$is_actives['Lolos'].'" aria-current="page" href="pages/lihat_pendaftar_lolos.php?page=1&show=25">Data Pendaftar Lolos</a>
                         </li>
                         ';
                     }
