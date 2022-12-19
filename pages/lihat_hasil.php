@@ -82,7 +82,7 @@ include('../assets/php/proses_ambil_hasil.php');
                         echo '
                         <p>Anda dapat mencetak kartu ujian pada tombol di bawah ini</p>
                         <div class="pb-3 d-grid">
-                            <a href="#" class="btn btn-primary">Cetak Kartu Ujian</a>
+                            <a href="cetak_kartu_ujian.php" class="btn btn-primary">Cetak Kartu Ujian</a>
                         </div>
                         ';
                     }else{

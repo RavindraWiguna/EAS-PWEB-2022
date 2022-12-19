@@ -17,6 +17,7 @@ $filelocations = [
     'lihat_berkas.php' => '/pages/lihat_berkas.php',
     'form_berkas.php' => '/pages/form_berkas.php',
     'lihat_hasil.php' => '/pages/lihat_hasil.php',
+    'cetak_kartu_ujian.php' => '/assets/php/cetak_kartu_ujian.php',
     'proses_logout.php' => '/assets/php/proses_logout.php',
 ];
 

@@ -1,3 +1,7 @@
+<?php
+include("assets/php/auth_checker.php");
+check(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
