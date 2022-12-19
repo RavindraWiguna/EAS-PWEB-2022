@@ -52,27 +52,40 @@ $pdf->Line(10, 35, 290, 35);
 
 // membuat header tabel
 $width_col1 = 50;
+$gap = 5;
 $pdf->SetFont('Arial','',12);
 $pdf->Cell($width_col1,6,'Instansi:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Lokasi:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'NIK:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Nomor Peserta:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Nama:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Jenis Kelamin:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Tempat/Tanggal Lahir:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Kualifikasi Pendidikan:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Formasi Jabatan:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Lokasi Tes:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(10,$gap*2,'',0,1);
+$pdf->Cell(145,6,'Lokasi Tes:',0,0,'C');
+$pdf->Cell(145,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
 
 // This function call can be copied into your project and can be made from anywhere in your code
 $filepath = '../media/tmp/tmp.png';
