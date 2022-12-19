@@ -1,6 +1,7 @@
 <?php
+$app_url = 'http://localhost/kelautan';
 if(!session_id()) session_start();
-$app_url = $_SESSION['app_url'];
+$_SESSION['app_url'] = $app_url;
 
 function redirect_handler($url){
     global $app_url;
