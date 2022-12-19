@@ -50,13 +50,34 @@ $pdf->Line(10, 35, 290, 35);
 
 
 // membuat header tabel
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(10,6,'ID',1,0,'C');
-$pdf->Cell(64,6,'NAMA',1,0,'C');
-$pdf->Cell(75,6,'ALAMAT',1,0,'C');
-$pdf->Cell(34,6,'JENIS KELAMIN',1,0,'C');
-$pdf->Cell(30,6,'AGAMA',1,0,'C');
-$pdf->Cell(290-30-34-75-64-10-10,6,'SEKOLAH ASAL',1,1,'C');
+$width_col1 = 50;
+$pdf->SetFont('Arial','',12);
+$pdf->Cell($width_col1,6,'Instansi:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Lokasi:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'NIK:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Nomor Peserta:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Nama:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Jenis Kelamin:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Tempat/Tanggal Lahir:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Kualifikasi Pendidikan:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Formasi Jabatan:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell($width_col1,6,'Lokasi Tes:',0,0,'');
+$pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+
+// This function call can be copied into your project and can be made from anywhere in your code
+$filepath = '../../storage/berkas/'
+barcode( $filepath, $text, $size, $orientation, $code_type, $print, $sizefactor );
+
+$pdf->Image()
 
 // untuk koneksi ke database
 // include ("config.php");
