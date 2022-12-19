@@ -149,24 +149,24 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         <div>';
                     if($pendaftar['status_pendaftaran'] == 0){
                         echo '
-                        <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        ✕ Tidak memenuhi syarat
-                        </button>
-                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                        ✓ Memenuhi syarat
-                        </button>
+                            <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            ✕ Tidak memenuhi syarat
+                            </button>
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                            ✓ Memenuhi syarat
+                            </button>
                         ';
                     }else if($pendaftar['status_pendaftaran'] == 1){
                         echo '
-                        <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        ✕ Ganti status ke tidak memenuhi syarat
-                        </button>
+                            <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            ✕ Ganti status ke tidak memenuhi syarat
+                            </button>
                         ';
                     }else if($pendaftar['status_pendaftaran'] == -1){
                         echo '
-                        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                        ✓ Ganti status ke memenuhi syarat
-                        </button>
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                            ✓ Ganti status ke memenuhi syarat
+                            </button>
                         ';
                     }
 
