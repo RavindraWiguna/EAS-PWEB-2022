@@ -18,7 +18,9 @@ check(2);
     include("../components/navbar.php")?>
     <div class="text-center text-white p-5 mt-4">
         <h1>Selamat Datang</h1>
-        <h3>Pegawai</h2>
+        <?php
+        echo '<h3>'.$_SESSION['user']['name'].'</h3>';
+        ?>
     </div>
     <?php
     if(isset($_GET['status'])){
@@ -52,43 +54,10 @@ check(2);
         }
     }
     ?>
-    <!-- image slide -->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div id="img1" class="back-slide-img"></div>
-            <img src="https://www.beritatrans.com/images/content/1/2021/2021-01-29/1a338e394c19e9a15ad6a12bcc635110.jpeg" class="d-block h-100 imslide" alt="">
-        </div>
-        <div class="carousel-item">
-            <div id="img2"class="back-slide-img"></div>
-            <img src="https://merahputih.com/media/2015/04/23/s2rKVMdNR51429767341.jpg" class="d-block h-100 imslide" alt="">
-        </div>
-        <div class="carousel-item">
-            <div id="img3"class="back-slide-img"></div>
-            <img src="https://kkp.go.id/an-component/media/upload-gambar-pendukung/brsdm/Foto%20Berita/WhatsApp%20Image%202022-05-05%20at%202.31.59%20PM%20(1).jpeg" class="d-block h-100 imslide" alt="">
-        </div>
-    </div>
-    <div class="container pt-5">
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-        </div>
-
-        <!-- sign login button -->
-        <div class="d-flex justify-content-center">
-            <a href="pages/form_signup.php" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="daftar_btn">
-                Daftar
-            </a>
-            <a href="pages/form_login.php" class="btn px-5 mx-5 btn-lg text-white fw-semibold" id="login_btn">
-                Masuk
-            </a>
-        </div>
+    <?php
+    include('../components/pengumuman.php');
+    ?>
     </div>
     
     <!-- JavaScript Bundle with Popper -->

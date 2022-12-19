@@ -21,27 +21,27 @@
 
                 // cek apakah ada yang login
                 else if($_SESSION['user_is_login']){
+                    $is_actives=[
+                        'Dashboard' => '',
+                        'Data Diri' => '',
+                        'Berkas' => '',
+                        'Hasil' => '',
+                    ];
+                    if(str_contains($_SERVER['REQUEST_URI'], 'dashboard')){
+                        $is_actives['Dashboard'] = ' active';
+                    }
+                    if(str_contains($_SERVER['REQUEST_URI'], 'datadiri')){
+                        $is_actives['Data Diri'] = ' active';
+                    }
+                    if(str_contains($_SERVER['REQUEST_URI'], 'berkas')){
+                        $is_actives['Berkas'] = ' active';
+                    }
+                    if(str_contains($_SERVER['REQUEST_URI'], 'hasil')){
+                        $is_actives['Hasil'] = ' active';
+                    }
+                    
                     // cek apakah user atau admin
                     if($_SESSION['user']['privilege_level']<2){
-                        $is_actives=[
-                            'Dashboard' => '',
-                            'Data Diri' => '',
-                            'Berkas' => '',
-                            'Hasil' => '',
-                        ];
-                        if(str_contains($_SERVER['REQUEST_URI'], 'user_dashboard')){
-                            $is_actives['Dashboard'] = ' active';
-                        }
-                        if(str_contains($_SERVER['REQUEST_URI'], 'datadiri')){
-                            $is_actives['Data Diri'] = ' active';
-                        }
-                        if(str_contains($_SERVER['REQUEST_URI'], 'berkas')){
-                            $is_actives['Berkas'] = ' active';
-                        }
-                        if(str_contains($_SERVER['REQUEST_URI'], 'hasil')){
-                            $is_actives['Hasil'] = ' active';
-                        }
-
                         echo '
                         <li class="nav-item">
                             <a class="nav-link '.$is_actives['Dashboard'].'" aria-current="page" href="pages/dashboards/user_dashboard.php">Dashboard</a>
@@ -59,10 +59,10 @@
                     }else{
                         echo '
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="pages/dashboards/pegawai_dashboard.php">Dashboard</a>
+                            <a class="nav-link '.$is_actives['Dashboard'].'" aria-current="page" href="pages/dashboards/pegawai_dashboard.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Data Seluruh Pendaftar</a>
+                            <a class="nav-link" aria-current="page" href="pages/lihat_seluruh_pendaftar.php">Data Seluruh Pendaftar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Verifikasi Pendaftar</a>
