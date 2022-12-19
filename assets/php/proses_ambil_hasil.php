@@ -50,7 +50,8 @@ $hasil['hasil'] = mysqli_fetch_assoc($query);
 // cek apakah ada hasil
 if( mysqli_num_rows($query) < 1 ){
     // set boolean ada ke false
-    $hasil['exist']=0;
+    $hasil['exist']=1;
+    $hasil['id_sesi']=1;
     // exit();
 }
 else{

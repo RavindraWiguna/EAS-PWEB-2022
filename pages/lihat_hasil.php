@@ -35,22 +35,78 @@ include('../assets/php/proses_ambil_hasil.php');
 
 
                 if($hasil['exist']==1){
+                    $ujian_is_set = $hasil['id_sesi']==5?false:true;
                     echo '
-                    <div class="alert alert-primary" role="alert">
-                        A simple primary alert—check it out!
-                    </div>
-                    <p><b>Anda dinyatakan lolos seleksi</b></p>
-                    ';
+                    <div class="alert alert-success" role="alert">
+                        <p><b>Selamat!</b></p>
+                        <p>Anda dinyatakan <b>lolos</b> seleksi berkas</p>
+                    </div>';
+                    if($ujian_is_set){
+                        echo '
+                        <p>Berikut adalah jadwal ujian anda:</p>
+                        <table class="table table-hover mx-auto">
+                        <thead>
+                            <tr>
+                            <th scope="col" class="text-center"></th>
+                            <th scope="col" class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        ';
+                        echo '
+                        <tr>
+                        <th scope="row" class="align-middle">Lokasi Ujian</th>
+                        <td>Dinas Kelautan dan Perikanan Provinsi Jawa Timur<br>Jl. Ahmad Yani No.152 B, Gayungan, Kec. Gayungan, Kota SBY, Jawa Timur</td>
+                        </tr>
+                        <tr>
+                        <th scope="row" class="align-middle">Tanggal Ujian</th>
+                        <td>16 Januari 2023</td>
+                        </tr>
+                        <tr>
+                        <th scope="row" class="align-middle">Sesi Ujian</th>
+                        <td>1</td>
+                        </tr>
+                        <tr>
+                        <th scope="row" class="align-middle">Waktu Mulai</th>
+                        <td>08:00 (WIB)</td>
+                        </tr>
+                        <tr>
+                        <th scope="row" class="align-middle">Waktu Selesai</th>
+                        <td>09:30 (WIB)</td>
+                        </tr>
+                        ';
+                        echo '
+                        </tbody>
+                        </table>
+                        ';
+                        echo '
+                        <p>Anda dapat mencetak kartu ujian pada tombol di bawah ini</p>
+                        <div class="pb-3 d-grid">
+                            <a href="#" class="btn btn-primary">Cetak Kartu Ujian</a>
+                        </div>
+                        ';
+                    }else{
+                        echo '
+                        <p>Tanggal dan Sesi Ujian Belum ditentukan</p>
+                        ';
+                    }
+
                 }
                 else if($hasil['exist']==-1){
                     echo '
-                    <p><b>Anda dinyatakan tidak lolos seleksi</b></p>
+                    <div class="alert alert-warning" role="alert">
+                        <p><b>Maaf</b></p>
+                        <p>Anda dinyatakan <b>tidak lolos</b> seleksi berkas</p>
+                        <p><b>JANGAN PUTUS ASA DAN TETAP SEMANGAT!</b></p>
+                    </div>
                     ';
                 }
                 else{
                     echo '
                     <div class="alert alert-primary" role="alert">
-                        <p><b>Anda belum dinyatakan lolos atau tidak lolos seleksi</b></p>
+                        <p><b>Hasil Belum Keluar</b></p>
+                        <p>Anda belum dinyatakan lolos atau tidak lolos seleksi berkas</p>
+                        <p>Hasil akan keluar pada tanggal <b>13 Januari 2023</b></p>
                     </div>
                     
                     ';

@@ -37,6 +37,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                     'agama' => 'Agama',
                     'status_perkawinan' => 'Status Perkawinan',
                     'alamat' => 'Alamat',
+                    'kualifikasi_pendidikan' => 'Kualifikasi Pendidikan',
                 ];
 
                 if($pendaftar['exist']){

@@ -28,13 +28,13 @@ function resetValidateMessage(keep, custom_msg=null){
     let msgalamat = document.getElementById('msgalamat');
     let msgagama = document.getElementById('msgagama');
     let msgstatus_perkawinan = document.getElementById('msgstatus_perkawinan');
-
+    let msgkualifikasi_pendidikan = document.getElementById('msgkualifikasi_pendidikan');
     let msgberkas = document.getElementById('msgberkas');
     let msgpasfoto = document.getElementById('msgpasfoto');
 
     let arr = [msgemail,msgusername,msgpassword,msgc_password,msgnama_lengkap,msgform, 
                msgnik, msgtanggal_lahir, msgtempat_lahir, msgjenis_kelamin, msgagama, 
-               msgstatus_perkawinan, msgalamat, msgberkas, msgpasfoto];
+               msgstatus_perkawinan, msgalamat, msgberkas, msgpasfoto, msgkualifikasi_pendidikan];
     
     for(let i=0;i<arr.length;i++){
         if(arr[i])
@@ -56,7 +56,8 @@ function resetValidateMessage(keep, custom_msg=null){
         'status_perkawinan' : 'Status perkawinan tidak valid',
         'jenis_kelamin' : 'Jenis kelamin tidak valid',
         'berkas' : 'Berkas belum lengkap',
-        'pasfoto' : 'Pasfoto belum lengkap'
+        'pasfoto' : 'Pasfoto belum lengkap',
+        'kualifikasi_pendidikan' : 'Kualifikasi pendidikan tidak valid'
     };
 
     if(keep in arr_keep_msgs){
@@ -164,8 +165,9 @@ function validateDataDiri(){
     let alamat = document.getElementById('idalamat').value;
     let agama = document.getElementById('idagama').value;
     let status_perkawinan = document.getElementById('idstatus_perkawinan').value;
+    let kualifikasi_pendidikan = document.getElementById('idkualifikasi_pendidikan').value;
 
-    if(nik=='' || nama=='' || tempat_lahir=='' || tanggal_lahir=='' || jenis_kelamin=='' || agama=='' || status_perkawinan==''){
+    if(nik=='' || nama=='' || tempat_lahir=='' || tanggal_lahir=='' || jenis_kelamin=='' || agama=='' || status_perkawinan=='' || kualifikasi_pendidikan==''){
         resetValidateMessage('form');
         document.getElementById('msgform').scrollIntoView(false);
         return false;
@@ -210,8 +212,8 @@ function validateDataDiri(){
     }
 
     // validasi apakah alamat valid
-    // regex untuk alamat tidak boleh berisi karakter ?&%$#@!^*()_+|~=`{}[]:";'<>?/
-    let regex = /[?&%$#@!^*()_+|~=`{}[\]:";'<>?\/]/;
+    // regex untuk alamat tidak boleh berisi karakter ?&%$#@!^*()_+|~=`{}[]:";'<>?/\-
+    let regex = /[\?\&\%\$\#\@\!\^\*\(\)\_\+\|\~\=\`\{\}\[\]\"\:\;\'\<\>\?\/\\\-]/;
     if(regex.test(alamat)){
         resetValidateMessage('alamat');
         document.getElementById('msgalamat').scrollIntoView(false);
@@ -229,6 +231,13 @@ function validateDataDiri(){
     if(status_perkawinan==''){
         resetValidateMessage('status_perkawinan');
         document.getElementById('msgstatus_perkawinan').scrollIntoView(false);
+        return false;
+    }
+
+    // cek apakah kualifikasi pendidikan tidak berisi karakter ?&%$#@!^*()_+|~=`{}[]:";'<>?/\-
+    if(regex.test(kualifikasi_pendidikan)){
+        resetValidateMessage('kualifikasi_pendidikan');
+        document.getElementById('msgkualifikasi_pendidikan').scrollIntoView(false);
         return false;
     }
 

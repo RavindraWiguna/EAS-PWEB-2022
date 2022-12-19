@@ -24,7 +24,7 @@ include('../assets/php/proses_ambil_datadiri.php');
     <div class="main-gradient pt-5">
         <div class="container">
             <div class="d-flex flex-column text-center text-white mt-4 mb-2">
-                <h5>Isi form dengan benar sesuai yang tertera pada KTP</h5>
+                <h5>Isi form dengan benar</h5>
             </div>
             <div class="bg-white rounded px-3 my-form-box mx-auto">
                 <form method="POST" action="../assets/php/proses_cu_datadiri.php" onSubmit="return validateDataDiri()">
@@ -184,6 +184,17 @@ include('../assets/php/proses_ambil_datadiri.php');
                             ?>
                         </select>
                         <p id="msgstatus_perkawinan" class="text-danger"></p>
+                    </div>
+
+                    <!-- Pendidikan Terakhir -->
+                    <div class="form-outline mt-2">
+                        <label class="form-label text-black" for="kualifikasi_pendidikan">Pendidikan Terakhir</label>
+                        <input type="text" name="kualifikasi_pendidikan" class="form-control" placeholder="Pendidikan Terakhir" id="idkualifikasi_pendidikan"
+                        <?php 
+                        $pendidikan = $pendaftar['exist']? $pendaftar['kualifikasi_pendidikan'] : '';
+                        echo 'value="'.$pendidikan.'"'; 
+                        ?>/>
+                        <p id="msgkualifikasi_pendidikan" class="text-danger"></p>
                     </div>
 
                     <!-- submit -->
