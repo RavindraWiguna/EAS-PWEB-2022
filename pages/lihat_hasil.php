@@ -35,13 +35,39 @@ include('../assets/php/proses_ambil_hasil.php');
 
 
                 if($hasil['status_pendaftaran']==1){
-                    $ujian_is_set = $hasil['id_sesi']==5?false:true;
+                    $ujian_is_set = $hasil['ujian']['id_sesi']==5?false:true;
                     echo '
                     <div class="alert alert-success" role="alert">
                         <p><b>Selamat!</b></p>
                         <p>Anda dinyatakan <b>lolos</b> seleksi berkas</p>
                     </div>';
                     if($ujian_is_set){
+                        $map_nama_bulan = [
+                            '01' => 'Januari',
+                            '02' => 'Februari',
+                            '03' => 'Maret',
+                            '04' => 'April',
+                            '05' => 'Mei',
+                            '06' => 'Juni',
+                            '07' => 'Juli',
+                            '08' => 'Agustus',
+                            '09' => 'September',
+                            '10' => 'Oktober',
+                            '11' => 'November',
+                            '12' => 'Desember'
+                        ];
+        
+                        $value = $hasil['ujian'];
+                        // convert tanggal ujian pada value dari format yyyy-mm-dd menjadi dd-mm-yyyy
+                        $tanggal_ujian = explode('-', $value['tanggal_ujian']);
+                        $tanggal_ujian = $tanggal_ujian[2].' '.$map_nama_bulan[$tanggal_ujian[1]].' '.$tanggal_ujian[0];
+
+                        // convert waktu dari format hh:mm::ss ke hh:mm
+                        $waktu_mulai = explode(':', $value['waktu_mulai']);
+                        $waktu_mulai = $waktu_mulai[0].':'.$waktu_mulai[1];
+                        $waktu_selesai = explode(':', $value['waktu_selesai']);
+                        $waktu_selesai = $waktu_selesai[0].':'.$waktu_selesai[1];
+                        
                         echo '
                         <p>Berikut adalah jadwal ujian anda:</p>
                         <table class="table table-hover mx-auto">
@@ -56,11 +82,11 @@ include('../assets/php/proses_ambil_hasil.php');
                         echo '
                         <tr>
                         <th scope="row" class="align-middle">Lokasi Ujian</th>
-                        <td>Dinas Kelautan dan Perikanan Provinsi Jawa Timur<br>Jl. Ahmad Yani No.152 B, Gayungan, Kec. Gayungan, Kota SBY, Jawa Timur</td>
+                        <td>'.$value['nama_dinas'].'<br>'.$value['alamat_dinas'].'</td>
                         </tr>
                         <tr>
                         <th scope="row" class="align-middle">Tanggal Ujian</th>
-                        <td>16 Januari 2023</td>
+                        <td>'.$tanggal_ujian.'</td>
                         </tr>
                         <tr>
                         <th scope="row" class="align-middle">Sesi Ujian</th>
@@ -68,11 +94,11 @@ include('../assets/php/proses_ambil_hasil.php');
                         </tr>
                         <tr>
                         <th scope="row" class="align-middle">Waktu Mulai</th>
-                        <td>08:00 (WIB)</td>
+                        <td>'.$waktu_mulai.' WIB</td>
                         </tr>
                         <tr>
                         <th scope="row" class="align-middle">Waktu Selesai</th>
-                        <td>09:30 (WIB)</td>
+                        <td>'.$waktu_selesai.' WIB</td>
                         </tr>
                         ';
                         echo '

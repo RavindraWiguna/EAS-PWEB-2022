@@ -3,7 +3,7 @@ if(!session_id()) session_start();
 //ambil id
 $id = $_SESSION['user']['id'];
 
-// buat query untuk ambil data dari database bagi pendaftar yang belum terverifikasi
+// buat query untuk ambil data dari database bagi pendaftar lolos
 $sql = 'SELECT p.id, p.nama, l.nama_dinas, l.alamat_dinas, pl.tanggal_ujian, s.id as "id_sesi", s.waktu_mulai, s.waktu_selesai
         FROM pendaftar as p
         JOIN pendaftar_lolos as pl

@@ -1,37 +1,37 @@
 <?php
 if(!session_id()) session_start();
 
-// inisiasi hasil ke null
 $hasil = [];
-$hasil['exist']=0;
+$hasil['status_pendaftaran']=0;
 
-//ambil id akun
-$id = $_SESSION['user']['id'];
 
-// ambil id pendaftar
-$sql = "SELECT * FROM pendaftar WHERE id_akun=$id";
+// buat query untuk ambil id dan status_pendaftaran pendaftar dari tabel pendaftar yang id akun sama dengan id akun sekarang
+$sql = 'SELECT id, status_pendaftaran FROM pendaftar WHERE id_akun = '.$_SESSION['user']['id'];
 $query = mysqli_query($db, $sql);
-$pendaftar = mysqli_fetch_assoc($query);
-$pendaftar['exist']=true;
-$id_pendaftar = null;
-// jika data yang di-edit tidak ditemukan
-if( mysqli_num_rows($query) < 1 ){
-    // set boolean ada ke false
-    $pendaftar['exist']=false;
-    // exit('aaa');
-}
 
-// exit('bbbb');
+$result = mysqli_fetch_assoc($query);
+$id_pendaftar = $result['id'];
+$hasil['status_pendaftaran'] = $result['status_pendaftaran'];
 
-$id_pendaftar = $pendaftar['id'];
-$hasil = [];
-$hasil['status_pendaftaran'] = $pendaftar['status_pendaftaran'];
-
-if($hasil['status_pendaftaran']==1){
-    // ambil data ujian dari tabel pendaftar_lolos
-    $sql = "SELECT * FROM pendaftar_lolos WHERE id_pendaftar=$id_pendaftar";
+// jika lolos verfikasi
+if($hasil['status_pendaftaran'] == 1){
+    // buat query untuk ambil data dari database bagi pendaftar lolos
+    $sql = 'SELECT l.nama_dinas, l.alamat_dinas, pl.tanggal_ujian, s.id as "id_sesi", s.waktu_mulai, s.waktu_selesai
+            FROM pendaftar as p
+            JOIN pendaftar_lolos as pl
+            ON p.id=pl.id_pendaftar
+            JOIN tabel_lokasi as l
+            ON pl.id_lokasi=l.id
+            JOIN tabel_sesi as s
+            ON pl.id_sesi=s.id
+            WHERE p.id = '.$id_pendaftar.'';
     $query = mysqli_query($db, $sql);
-    $hasil['hasil'] = mysqli_fetch_assoc($query);
-    $hasil['id_sesi'] = 3;
+
+    $pendaftar_lolos = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+    $pendaftar = $pendaftar_lolos[0];
+
+    $hasil['ujian'] = $pendaftar;
 }
+
 ?>
