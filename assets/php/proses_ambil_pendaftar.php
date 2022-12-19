@@ -10,18 +10,34 @@ $query = mysqli_query($db, $sql);
 $list_pendaftar = mysqli_fetch_all ($query, MYSQLI_ASSOC);
 // echo ($json );
 // print_r($json);
-function get_chunk_pendaftar(){
-    global $list_pendaftar;
-    if(!isset($_GET['show'])){
-        $show_per_page=25;
-    }else{
-        $show_per_page = $_GET['show'];
-    }
+
+function get_page(){
     if(!isset($_GET['page'])){
         $page=1;
     }else{
         $page = $_GET['page'];
     }
+    return $page;
+}
+
+function get_show(){
+    if(!isset($_GET['show'])){
+        $show_per_page=25;
+    }else{
+        $show_per_page = $_GET['show'];
+    }
+    return $show_per_page;
+}
+
+function get_total_data(){
+    global $list_pendaftar;
+    return sizeof($list_pendaftar);
+}
+
+function get_chunk_pendaftar(){
+    global $list_pendaftar;
+    $page = get_page();
+    $show_per_page = get_show();
 
     // $show_per_page = min($show_per_page, sizeof($list_pendaftar));
 

@@ -57,13 +57,49 @@ include('../assets/php/proses_ambil_pendaftar.php');
                 </table>
                 ';
                 ?>
-                
+                <nav aria-label="Page navigation example" class="pb-1">
+                    <ul class="pagination">
+                        <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous" id="prev">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        </li>
+                        <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next" id="next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
     <?php include('components/footer.php');?>
 
     <script src="../assets/js/validator.js"></script>
+
+    <script>
+        function changehref(){
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var page = <?php echo get_page();?>;
+            var show = <?php echo get_show();?>;
+            var total_data = <?php echo get_total_data();?>;
+            var max_page = Math.ceil(total_data/show);
+            if(page == 1){
+                prev.href = "lihat_seluruh_pendaftar.php?page=1&show="+(show);
+            }else{
+                prev.href = "lihat_seluruh_pendaftar.php?page="+(page-1)+"&show="+(show);
+            }
+            if(page == max_page){
+                next.href = "lihat_seluruh_pendaftar.php?page="+max_page+"&show="+(show);
+            }else{
+                next.href = "lihat_seluruh_pendaftar.php?page="+(page+1)+"&show="+(show);
+            }
+        }
+        changehref();
+    </script>
+
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
