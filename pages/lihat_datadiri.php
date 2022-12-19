@@ -38,6 +38,8 @@ include('../assets/php/proses_ambil_datadiri.php');
                     'status_perkawinan' => 'Status Perkawinan',
                     'alamat' => 'Alamat',
                     'kualifikasi_pendidikan' => 'Kualifikasi Pendidikan',
+                    'id_unit_kerja' => 'Unit Kerja',
+                    'id_lokasi' => 'Lokasi Pilihan',
                 ];
 
                 if($pendaftar['exist']){

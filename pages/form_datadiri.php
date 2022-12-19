@@ -121,13 +121,6 @@ include('../assets/php/proses_ambil_datadiri.php');
                                 ];
 
                                 $data_selected = [
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    ''
                                 ];
                                 foreach($data_agama as $temp){
                                     $selected = $temp == $agama? 'selected' : '';
@@ -161,13 +154,6 @@ include('../assets/php/proses_ambil_datadiri.php');
                                 ];
 
                                 $data_selected = [
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    ''
                                 ];
                                 foreach($data_perkawinan as $temp){
                                     $selected = $temp == $status_perkawinan? 'selected' : '';
@@ -196,6 +182,79 @@ include('../assets/php/proses_ambil_datadiri.php');
                         ?>/>
                         <p id="msgkualifikasi_pendidikan" class="text-danger"></p>
                     </div>
+
+                    <!-- Unit kerja -->
+                    <div class="form-outline mt-2">
+                        <div><b>Jabatan dan Lokasi</b></div>
+                        <label class="form-label text-black" for="id_unit_kerja">Unit Kerja</label>
+                        <select class="form-select" name="id_unit_kerja" id="idunit_kerja">
+                            <?php
+                                $id_unit_kerja = $pendaftar['exist']? $pendaftar['id_unit_kerja'] : '';
+                                // query data unit kerja
+                                $sql = "SELECT * FROM unit_kerja";
+                                $query = mysqli_query($db, $sql);
+                                $data_unit_kerja = [
+                                    '' => ''
+                                ];
+                                while($row = mysqli_fetch_array($query)){
+                                    $data_unit_kerja[$row['id']]  = $row['nama_unit_kerja'];
+                                }
+
+                                
+                                $data_selected = [
+                                ];
+                                foreach($data_unit_kerja as $key => $value){
+                                    $selected = $key == $id_unit_kerja? 'selected' : '';
+                                    $data_selected[$key] = $selected;
+                                }
+                                
+                                foreach($data_unit_kerja as $key => $value){
+                                    if($value == ''){
+                                        echo '<option value="" '.$data_selected[$key].' disabled hidden>Pilih Unit Kerja</option>';
+                                    }else{
+                                        echo '<option value="'.$key.'" '.$data_selected[$key].'>'.$value.'</option>';
+                                    }
+                                }                            
+                            ?>
+                        </select>
+                        <p id="msgunit_kerja" class="text-danger"></p>
+                    </div>     
+
+                    <!-- Lokasi kerja -->
+                    <div class="form-outline mt-2">
+                        <label class="form-label text-black" for="id_lokasi">Lokasi Pilihan</label>
+                        <select class="form-select" name="id_lokasi" id="idlokasi">
+                            <?php
+                                $id_lokasi = $pendaftar['exist']? $pendaftar['id_lokasi'] : '';
+                                // query data lokasi
+                                $sql = "SELECT * FROM tabel_lokasi";
+                                $query = mysqli_query($db, $sql);
+                                $data_lokasi = [
+                                    '' => ''
+                                ];
+                                while($row = mysqli_fetch_array($query)){
+                                    $data_lokasi[$row['id']]  = $row['nama_dinas'].', '.$row['alamat_dinas'];
+                                }
+
+                                
+                                $data_selected = [
+                                ];
+                                foreach($data_lokasi as $key => $value){
+                                    $selected = $key == $id_unit_kerja? 'selected' : '';
+                                    $data_selected[$key] = $selected;
+                                }
+                                
+                                foreach($data_lokasi as $key => $value){
+                                    if($value == ''){
+                                        echo '<option value="" '.$data_selected[$key].' disabled hidden>Pilih Lokasi Kerja</option>';
+                                    }else{
+                                        echo '<option value="'.$key.'" '.$data_selected[$key].'>'.$value.'</option>';
+                                    }
+                                }                            
+                            ?>
+                        </select>
+                        <p id="msglokasi" class="text-danger"></p>
+                    </div>      
 
                     <!-- submit -->
                     <div class="d-grid mt-3">

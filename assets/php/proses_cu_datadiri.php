@@ -22,6 +22,8 @@ if(isset($_POST['isi_data_diri'])){
     $agama = $_POST['agama'];
     $status_perkawinan = $_POST['status_perkawinan'];
     $kualifikasi_pendidikan = $_POST['kualifikasi_pendidikan'];
+    $id_unit_kerja = $_POST['id_unit_kerja'];
+    $id_lokasi = $_POST['id_lokasi'];
 
     if($pendaftar['exist']){
         // ada pendaftar berarti kita update data
@@ -36,7 +38,9 @@ if(isset($_POST['isi_data_diri'])){
         alamat='$alamat', 
         agama='$agama', 
         status_perkawinan='$status_perkawinan',
-        kualifikasi_pendidikan='$kualifikasi_pendidikan'
+        kualifikasi_pendidikan='$kualifikasi_pendidikan',
+        id_unit_kerja='$id_unit_kerja',
+        id_lokasi='$id_lokasi'
         WHERE id_akun=$id";
 
         // eksekusi query update
@@ -69,8 +73,9 @@ if(isset($_POST['isi_data_diri'])){
 
 
         // buat query insert
-        $sql = "INSERT INTO pendaftar (id_akun, nik, nama, tanggal_lahir, tempat_lahir, jenis_kelamin, alamat, agama, status_perkawinan, kualifikasi_pendidikan)
-        VALUES ('$id', '$nik', '$nama_lengkap', '$tanggal_lahir', '$tempat_lahir', '$jenis_kelamin', '$alamat', '$agama', '$status_perkawinan', '$kualifikasi_pendidikan')";
+        $sql = "INSERT INTO pendaftar 
+        (id_akun, nik, nama, tanggal_lahir, tempat_lahir, jenis_kelamin, alamat, agama, status_perkawinan, kualifikasi_pendidikan, id_unit_kerja, id_lokasi)
+        VALUES ('$id', '$nik', '$nama_lengkap', '$tanggal_lahir', '$tempat_lahir', '$jenis_kelamin', '$alamat', '$agama', '$status_perkawinan', '$kualifikasi_pendidikan', '$id_unit_kerja', '$id_lokasi')";
 
         // eksekusi query insert
         $query = mysqli_query($db, $sql);
