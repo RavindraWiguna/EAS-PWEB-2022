@@ -79,12 +79,14 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     -1 => 'Gagal ke tahap selanjutnya',
                     0 => 'Belum Terverifikasi',
                     1 => 'Lolos ke tahap selanjutnya',
+                    ''=> 'Belum mengisi berkas'
                 ];
 
                 $map_class_status = [
                     -1 => 'table-danger',
                     0 => 'table-warning',
                     1 => 'table-success',
+                    ''=> 'table-secondary'
                 ];
 
                 if($pendaftar['exist']){
@@ -115,7 +117,10 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         <td class="'.$map_class_status[$pendaftar['status_pendaftaran']].'">'.$map_status[$pendaftar['status_pendaftaran']].'</td>
                     </tr>
                     ';
-
+                    $path_berkas = $pendaftar['path_berkas']==''? '#': $app_url.$pendaftar['path_berkas'];
+                    $path_foto = $pendaftar['path_foto']==''? '#': $app_url.$pendaftar['path_foto'];
+                    $berkas_disabled = $pendaftar['path_berkas']==''? 'disabled': '';
+                    $foto_disabled = $pendaftar['path_foto']==''? 'disabled': '';
                     // $basename = basename($pendaftar['path_foto']);
                     // $ext = pathinfo($basename, PATHINFO_EXTENSION);
                     // $nama_file_foto = $pendaftar['id'].'_'.$pendaftar['nama'].'_foto.'.$ext;
@@ -126,14 +131,14 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         <div class="">
                             <p>File Berkas</p>
                             <div class="pb-3 d-grid">
-                                <a href="'.$app_url.$pendaftar['path_berkas'].'" class="btn btn-info"  download="">Unduh</a>
+                                <a href="'.$path_berkas.'" class="btn btn-info '.$berkas_disabled.'"  download="">Unduh</a>
                             </div>
                         </div>
                         <div class="">
                             <p>Pas Foto</p>
-                            <img src="'.$app_url.$pendaftar['path_foto'].'" alt="" style="width:50%; margin-bottom:10px">
+                            <img src="'.$path_foto.'" alt="" style="width:50%; margin-bottom:10px">
                             <div class="pb-3 d-grid">
-                                <a href="'.$app_url.$pendaftar['path_foto'].'" class="btn btn-info" download="">Unduh</a>
+                                <a href="'.$path_foto.'" class="btn btn-info '.$foto_disabled.'" download="">Unduh</a>
                             </div>
                         </div>
                     </div>
