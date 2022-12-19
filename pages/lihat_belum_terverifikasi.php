@@ -4,7 +4,7 @@ check(2);
 ?>
 <?php
 include("../config.php");
-include('../assets/php/proses_ambil_pendaftar.php');
+include('../assets/php/proses_ambil_belum_terverifikasi.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

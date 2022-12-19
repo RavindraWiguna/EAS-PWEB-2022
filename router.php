@@ -23,6 +23,7 @@ $filelocations = [
     'proses_logout.php' => '/assets/php/proses_logout.php',
     'lihat_seluruh_pendaftar.php' => '/pages/lihat_seluruh_pendaftar.php?page=1&show=25',
     'lihat_pendaftar.php' => '/pages/lihat_pendaftar.php?id=1',
+    'lihat_belum_terverifikasi.php' => '/pages/lihat_belum_terverifikasi.php?page=1&show=25',
 ];
 
 function redirector($filename, $app, $files){

@@ -26,18 +26,31 @@
                         'Data Diri' => '',
                         'Berkas' => '',
                         'Hasil' => '',
+                        'Seluruh Pendaftar' => '',
+                        'Verifikasi' => '',
+                        'Lolos' => '',
+
                     ];
                     if(str_contains($_SERVER['REQUEST_URI'], 'dashboard')){
                         $is_actives['Dashboard'] = ' active';
                     }
-                    if(str_contains($_SERVER['REQUEST_URI'], 'datadiri')){
+                    else if(str_contains($_SERVER['REQUEST_URI'], 'datadiri')){
                         $is_actives['Data Diri'] = ' active';
                     }
-                    if(str_contains($_SERVER['REQUEST_URI'], 'berkas')){
+                    else if(str_contains($_SERVER['REQUEST_URI'], 'berkas')){
                         $is_actives['Berkas'] = ' active';
                     }
-                    if(str_contains($_SERVER['REQUEST_URI'], 'hasil')){
+                    else if(str_contains($_SERVER['REQUEST_URI'], 'hasil')){
                         $is_actives['Hasil'] = ' active';
+                    }
+                    else if(str_contains($_SERVER['REQUEST_URI'], 'seluruh_pendaftar')){
+                        $is_actives['Seluruh Pendaftar'] = ' active';
+                    }
+                    else if(str_contains($_SERVER['REQUEST_URI'], 'verifikasi')){
+                        $is_actives['Verifikasi'] = ' active';
+                    }
+                    else if(str_contains($_SERVER['REQUEST_URI'], 'lolos')){
+                        $is_actives['Lolos'] = 'active';
                     }
                     
                     // cek apakah user atau admin
@@ -62,13 +75,13 @@
                             <a class="nav-link '.$is_actives['Dashboard'].'" aria-current="page" href="pages/dashboards/pegawai_dashboard.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="pages/lihat_seluruh_pendaftar.php?page=1&show=25">Data Seluruh Pendaftar</a>
+                            <a class="nav-link '.$is_actives['Seluruh Pendaftar'].'" aria-current="page" href="pages/lihat_seluruh_pendaftar.php?page=1&show=25">Data Seluruh Pendaftar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Verifikasi Pendaftar</a>
+                            <a class="nav-link '.$is_actives['Verifikasi'].'" aria-current="page" href="pages/lihat_belum_terverifikasi.php?page=1&show=25">Verifikasi Pendaftar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Data Pendaftar Lolos</a>
+                            <a class="nav-link '.$is_actives['Lolos'].'" aria-current="page" href="#">Data Pendaftar Lolos</a>
                         </li>
                         ';
                     }
