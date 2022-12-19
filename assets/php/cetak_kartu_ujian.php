@@ -9,9 +9,17 @@ $pdf->AddPage();
 // setting jenis font yang akan digunakan
 $pdf->SetFont('Arial','B',16);
 // mencetak string 
-$pdf->Cell(280,7,'DAFTAR CALON SISWA SMK CODING',0,1,'C');
+$pdf->Cell(280,7,'KARTU PESERTA UJIAN CPNS  2023',0,1,'C');
+$pdf->SetFont('Arial','B',14);
+$pdf->Cell(280,7,'FORMASI LULUSAN TERBAIK',0,1,'C');
+
 // Memberikan space kebawah agar tidak terlalu rapat
 $pdf->Cell(10,7,'',0,1);
+
+
+// membuat garis lurus di pdf
+$pdf->Line(10, 25, 290, 25);
+
 
 // membuat header tabel
 $pdf->SetFont('Arial','B',12);
@@ -20,7 +28,7 @@ $pdf->Cell(64,6,'NAMA',1,0,'C');
 $pdf->Cell(75,6,'ALAMAT',1,0,'C');
 $pdf->Cell(34,6,'JENIS KELAMIN',1,0,'C');
 $pdf->Cell(30,6,'AGAMA',1,0,'C');
-$pdf->Cell(64,6,'SEKOLAH ASAL',1,1,'C');
+$pdf->Cell(290-30-34-75-64-10-10,6,'SEKOLAH ASAL',1,1,'C');
 
 // untuk koneksi ke database
 // include ("config.php");
