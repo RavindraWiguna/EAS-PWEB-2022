@@ -3,6 +3,31 @@ if(!session_id()) session_start();
 //ambil id
 $id = $_SESSION['user']['id'];
 
+// convert date string from yyyy-mm-dd to dd month yyyy
+function convert_date($str){
+
+    // nama bulan
+    $month = array(
+        '01' => 'Januari',
+        '02' => 'Februari',
+        '03' => 'Maret',
+        '04' => 'April',
+        '05' => 'Mei',
+        '06' => 'Juni',
+        '07' => 'Juli',
+        '08' => 'Agustus',
+        '09' => 'September',
+        '10' => 'Oktober',
+        '11' => 'November',
+        '12' => 'Desember'
+    );
+
+
+    $date = explode('-', $str);
+    return $date[2].' '.$month[$date[1]].' '.$date[0];
+}
+
+
 // buat query untuk ambil data dari database
 $sql = "SELECT * 
         FROM pendaftar as p 
@@ -20,5 +45,6 @@ if( mysqli_num_rows($query) < 1 ){
     $pendaftar['exist']=false;
 }else{
     $pendaftar['lokasi_joined'] = $pendaftar['nama_dinas'].'<br>'.$pendaftar['alamat_dinas'];
+    $pendaftar['tanggal_lahir'] = convert_date($pendaftar['tanggal_lahir']);
 }
 ?>
