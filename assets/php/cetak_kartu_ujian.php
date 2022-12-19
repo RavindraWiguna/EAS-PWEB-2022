@@ -11,13 +11,40 @@ require('fpdf/fpdf.php');
 include('../../config.php');
 include('barcode.php');
 
+// convert date string from yyyy-mm-dd to dd month yyyy
+function convert_date($str){
+
+    // nama bulan
+    $month = array(
+        '01' => 'Januari',
+        '02' => 'Februari',
+        '03' => 'Maret',
+        '04' => 'April',
+        '05' => 'Mei',
+        '06' => 'Juni',
+        '07' => 'Juli',
+        '08' => 'Agustus',
+        '09' => 'September',
+        '10' => 'Oktober',
+        '11' => 'November',
+        '12' => 'Desember'
+    );
+
+
+    $date = explode('-', $str);
+    return $date[2].' '.$month[$date[1]].' '.$date[0];
+}
+
+
 // ambil data pendaftar dari tabel pendaftar
-$sql = 'SELECT p.path_foto, p.nik, p.id, p.nama, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.kualifikasi_pendidikan, tl.nama_dinas, tl.alamat_dinas
+$sql = 'SELECT uk.nama_unit_kerja, p.path_foto, p.nik, p.id, p.nama, p.jenis_kelamin, p.tempat_lahir, p.tanggal_lahir, p.kualifikasi_pendidikan, tl.nama_dinas, tl.alamat_dinas
         FROM pendaftar as p
         JOIN pendaftar_lolos as pl
         ON pl.id_pendaftar=p.id
         JOIN tabel_lokasi as tl
         ON tl.id=pl.id_lokasi
+        JOIN unit_kerja as uk
+        ON uk.id=p.id_unit_kerja
         WHERE p.id_akun='.$_SESSION['user']['id'].'
         ';
 $query = mysqli_query($db, $sql);
@@ -29,8 +56,6 @@ $pdf = new FPDF('l','mm','A4');
 $pdf->AddPage();
 // setting jenis font yang akan digunakan
 $pdf->SetFont('Arial','B',16);
-
-
 
 $pdf->Image("../media/LOGO.png", 30, 3, 30, 30, 'png');
 
@@ -81,13 +106,13 @@ $pdf->Cell($width_col1,6,'Jenis Kelamin:',0,0,'');
 $pdf->Cell(64,6,$pendaftar['jenis_kelamin'],0,1,'L');
 $pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Tempat/Tanggal Lahir:',0,0,'');
-$pdf->Cell(64,6,$pendaftar['tempat_lahir'].'/'.$pendaftar['tanggal_lahir'],0,1,'L');
+$pdf->Cell(64,6,$pendaftar['tempat_lahir'].' / '.convert_date($pendaftar['tanggal_lahir']),0,1,'L');
 $pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Kualifikasi Pendidikan:',0,0,'');
 $pdf->Cell(64,6,$pendaftar['kualifikasi_pendidikan'],0,1,'L');
 $pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Formasi Jabatan:',0,0,'');
-$pdf->Cell(64,6,'PENGAWAS PERIKANAN PERTAMA',0,1,'L');
+$pdf->Cell(64,6,$pendaftar['nama_unit_kerja'],0,1,'L');
 $pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Lokasi Tes:',0,0,'');
 $pdf->Multicell(150,6,$pendaftar['nama_dinas'].', '.$pendaftar['alamat_dinas'],0,'l');
