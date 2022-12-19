@@ -70,9 +70,27 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                             ';
                         }
                     }
+                    // $basename = basename($pendaftar['path_foto']);
+                    // $ext = pathinfo($basename, PATHINFO_EXTENSION);
+                    // $nama_file_foto = $pendaftar['id'].'_'.$pendaftar['nama'].'_foto.'.$ext;
                     echo '
                     </tbody>
                     </table>
+                    <div class="d-grid gap-2">
+                        <div class="">
+                            <p>File Berkas</p>
+                            <div class="pb-3 d-grid">
+                                <a href="'.$app_url.$pendaftar['path_berkas'].'" class="btn btn-success"  download="">Unduh</a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <p>Foto</p>
+                            <img src="'.$app_url.$pendaftar['path_foto'].'" alt="" style="width:50%; margin-bottom:10px">
+                            <div class="pb-3 d-grid">
+                                <a href="'.$app_url.$pendaftar['path_foto'].'" class="btn btn-success" download="">Unduh</a>
+                            </div>
+                        </div>
+                    </div>
                     <a class="btn btn-primary btn-block mb-4" href="javascript:history.back()">Kembali</a>
                     ';
                 }else{

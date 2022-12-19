@@ -15,9 +15,9 @@ if(isset($_POST['isi_berkas'])){
     $berkas = $_FILES['berkas']['name'];
     $pasfoto = $_FILES['pasfoto']['name'];
 
-    // Rename nama file dan tambahkan tanggal dan jam upload
-    $berkas = date('dmYHis')."_".$berkas;
-    $pasfoto = date('dmYHis')."_".$pasfoto;
+    // Rename nama file dan tambahkan tanggal dan jam upload beserta data peserta untuk menghindari nama file yang sama
+    $berkas = date('dmYHis')."_".$pendaftar['id'].'_'.$pendaftar['nama'].'_'.$berkas;
+    $pasfoto = date('dmYHis')."_".$pendaftar['id'].'_'.$pendaftar['nama'].'_'.$pasfoto;
 
     // Set path folder tempat menyimpan berkas dan foto
     $path_berkas = "../../storages/berkas/".$berkas;
