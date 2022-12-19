@@ -9,7 +9,7 @@ $hasil['exist']=0;
 $id = $_SESSION['user']['id'];
 
 // ambil id pendaftar
-$sql = "SELECT id FROM pendaftar WHERE id_akun=$id";
+$sql = "SELECT * FROM pendaftar WHERE id_akun=$id";
 $query = mysqli_query($db, $sql);
 $pendaftar = mysqli_fetch_assoc($query);
 $pendaftar['exist']=true;
@@ -24,41 +24,14 @@ if( mysqli_num_rows($query) < 1 ){
 // exit('bbbb');
 
 $id_pendaftar = $pendaftar['id'];
+$hasil = [];
+$hasil['status_pendaftaran'] = $pendaftar['status_pendaftaran'];
 
-// exit('id_pendaftar: '.$id_pendaftar);
-
-// buat query untuk ambil data dari tabel pendaftar_lolos
-$sql = "SELECT * FROM pendaftar_lolos WHERE id_pendaftar=$id_pendaftar";
-$query = mysqli_query($db, $sql);
-$hasil['hasil'] = mysqli_fetch_assoc($query);
-
-// cek apakah ada hasil
-if( mysqli_num_rows($query) < 1 ){
-    // set boolean ada ke false
-    $hasil['exist']=0;
-    // exit('belum lolos');
-}else{
-    $hasil['exist']=1;
-    // exit('lolos');
+if($hasil['status_pendaftaran']==1){
+    // ambil data ujian dari tabel pendaftar_lolos
+    $sql = "SELECT * FROM pendaftar_lolos WHERE id_pendaftar=$id_pendaftar";
+    $query = mysqli_query($db, $sql);
+    $hasil['hasil'] = mysqli_fetch_assoc($query);
+    $hasil['id_sesi'] = 3;
 }
-
-// cek apakah ada di tabel pendaftar_gagal
-$sql = "SELECT * FROM pendaftar_gagal WHERE id_pendaftar=$id_pendaftar";
-$query = mysqli_query($db, $sql);
-$hasil['hasil'] = mysqli_fetch_assoc($query);
-
-// cek apakah ada hasil
-if( mysqli_num_rows($query) < 1 ){
-    // set boolean ada ke false
-    $hasil['exist']=1;
-    $hasil['id_sesi']=1;
-    // exit();
-}
-else{
-    // -1 berarti gagal
-    $hasil['exist']=-1;
-    // exit();
-}
-
-
 ?>

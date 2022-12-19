@@ -34,7 +34,7 @@ include('../assets/php/proses_ambil_hasil.php');
                 ];
 
 
-                if($hasil['exist']==1){
+                if($hasil['status_pendaftaran']==1){
                     $ujian_is_set = $hasil['id_sesi']==5?false:true;
                     echo '
                     <div class="alert alert-success" role="alert">
@@ -92,7 +92,7 @@ include('../assets/php/proses_ambil_hasil.php');
                     }
 
                 }
-                else if($hasil['exist']==-1){
+                else if($hasil['status_pendaftaran']==-1){
                     echo '
                     <div class="alert alert-warning" role="alert">
                         <p><b>Maaf</b></p>
