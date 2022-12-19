@@ -1,6 +1,19 @@
 <?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+
+$app_url = $_SESSION['app_url'];
+
 // memanggil library FPDF
 require('fpdf/fpdf.php');
+include('../../config.php');
+
+// ambil data pendaftar dari tabel pendaftar
+$sql = 'SELECT * FROM pendaftar WHERE id_akun = '.$_SESSION['user']['id'];
+$query = mysqli_query($db, $sql);
+$pendaftar = mysqli_fetch_assoc($query);
 
 // intance object dan memberikan pengaturan halaman PDF
 $pdf = new FPDF('l','mm','A4');
@@ -8,17 +21,32 @@ $pdf = new FPDF('l','mm','A4');
 $pdf->AddPage();
 // setting jenis font yang akan digunakan
 $pdf->SetFont('Arial','B',16);
+
+
+// exit();
+
+// $img = $app_url.$pendaftar['path_foto'];
+// // prepare a base64 encoded "data url"
+// // $pic = 'data://text/plain;base64,' . base64_encode($img);
+// $info = getimagesize($img);
+
+// exit($info);
+
+
+$pdf->Image("../media/LOGO.png", 3, 3, 30, 30, 'png');
+// $pdf->Image('../..'.$pendaftar['path_foto'], 10, 30, 50, 50, 'jpg');
+
 // mencetak string 
 $pdf->Cell(280,7,'KARTU PESERTA UJIAN CPNS  2023',0,1,'C');
 $pdf->SetFont('Arial','B',14);
 $pdf->Cell(280,7,'FORMASI LULUSAN TERBAIK',0,1,'C');
 
 // Memberikan space kebawah agar tidak terlalu rapat
-$pdf->Cell(10,7,'',0,1);
+$pdf->Cell(10,15,'',0,1);
 
 
 // membuat garis lurus di pdf
-$pdf->Line(10, 25, 290, 25);
+$pdf->Line(10, 35, 290, 35);
 
 
 // membuat header tabel
