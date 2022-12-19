@@ -24,6 +24,29 @@ include('../assets/php/proses_ambil_belum_terverifikasi.php');
             <div class="d-flex flex-column text-center text-white mt-4 mb-2">
                 <h5>Data Pendaftar Belum Terverifikasi</h5>
             </div>
+            <?php
+            // cek apakah ada pesan gagal meloloskan peserta atau menggagalkan peserta
+            if(isset($_GET['status'])){
+                if($_GET['status'] == 'gagal'){
+                    if($_GET['pesan']== 'gagal'){
+                        echo '
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> Pendaftar gagal digagalkan.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }
+                    else if($_GET['pesan']== 'lolos'){
+                        echo '
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> Pendaftar gagal diloloskan.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }
+                }
+            }
+            ?>
             <div class="bg-white rounded px-3 mx-auto my-form-box shadow">
                 <div class="pt-2"></div>
                 <?php

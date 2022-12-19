@@ -19,6 +19,10 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
 </head>
 <body>
     <?php include('components/navbar.php')?>
+    <?php
+        // simpan pendaftar yang dilihat pada session
+        $_SESSION['pendaftar'] = $pendaftar;
+    ?>
     <div class="main-gradient pt-5">
         <div class="container">
             <div class="d-flex flex-column text-center text-white mt-4 mb-2">
@@ -38,7 +42,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
 
                 $show_names = [ 
                     'nik' => 'NIK',
-                    'nama_lengkap' => 'Nama Lengkap',
+                    'nama' => 'Nama Lengkap',
                     'tempat_lahir' => 'Tempat Lahir',
                     'tanggal_lahir' => 'Tanggal Lahir',
                     'jenis_kelamin' => 'Jenis Kelamin',
@@ -80,18 +84,69 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         <div class="">
                             <p>File Berkas</p>
                             <div class="pb-3 d-grid">
-                                <a href="'.$app_url.$pendaftar['path_berkas'].'" class="btn btn-success"  download="">Unduh</a>
+                                <a href="'.$app_url.$pendaftar['path_berkas'].'" class="btn btn-info"  download="">Unduh</a>
                             </div>
                         </div>
                         <div class="">
                             <p>Foto</p>
                             <img src="'.$app_url.$pendaftar['path_foto'].'" alt="" style="width:50%; margin-bottom:10px">
                             <div class="pb-3 d-grid">
-                                <a href="'.$app_url.$pendaftar['path_foto'].'" class="btn btn-success" download="">Unduh</a>
+                                <a href="'.$app_url.$pendaftar['path_foto'].'" class="btn btn-info" download="">Unduh</a>
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-primary btn-block mb-4" href="javascript:history.back()">Kembali</a>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a class="btn btn-primary btn-block mb-4" href="javascript:history.back()">Kembali</a>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            ✕ Tidak memenuhi syarat
+                            </button>
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                            ✓ Memenuhi syarat
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Anda yakin menggagalkan peserta ini?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" role="alert">
+                                Harap dicek dengan seksama sebelum membuat keputusan
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
+                            <a href="proses_gagalkan_pendaftar.php" class="btn btn-danger">Ya, saya yakin</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Anda yakin meloloskan peserta ini?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-success" role="alert">
+                                Harap dicek dengan seksama sebelum membuat keputusan
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tidak</button>
+                            <a href="proses_loloskan_pendaftar.php" class="btn btn-success">Ya, saya yakin</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                     ';
                 }else{
                     echo '

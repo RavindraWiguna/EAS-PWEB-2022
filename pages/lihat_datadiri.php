@@ -30,7 +30,7 @@ include('../assets/php/proses_ambil_datadiri.php');
 
                 $show_names = [ 
                     'nik' => 'NIK',
-                    'nama_lengkap' => 'Nama Lengkap',
+                    'nama' => 'Nama Lengkap',
                     'tempat_lahir' => 'Tempat Lahir',
                     'tanggal_lahir' => 'Tanggal Lahir',
                     'jenis_kelamin' => 'Jenis Kelamin',
