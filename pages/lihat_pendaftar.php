@@ -100,14 +100,14 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     -1 => 'Gagal ke tahap selanjutnya',
                     0 => 'Belum Terverifikasi',
                     1 => 'Lolos ke tahap selanjutnya',
-                    ''=> 'Belum mengisi berkas'
+                    ''=> 'Belum Terverifikasi'
                 ];
 
                 $map_class_status = [
                     -1 => 'table-danger',
                     0 => 'table-warning',
                     1 => 'table-success',
-                    ''=> 'table-secondary'
+                    ''=> 'table-warning'
                 ];
 
                 if($pendaftar['exist']){
