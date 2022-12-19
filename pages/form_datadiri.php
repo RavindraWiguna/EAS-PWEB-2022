@@ -183,9 +183,9 @@ include('../assets/php/proses_ambil_datadiri.php');
                         <p id="msgkualifikasi_pendidikan" class="text-danger"></p>
                     </div>
 
+                    <div><b>Jabatan dan Lokasi</b></div>
                     <!-- Unit kerja -->
                     <div class="form-outline mt-2">
-                        <div><b>Jabatan dan Lokasi</b></div>
                         <label class="form-label text-black" for="id_unit_kerja">Unit Kerja</label>
                         <select class="form-select" name="id_unit_kerja" id="idunit_kerja">
                             <?php

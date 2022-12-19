@@ -166,8 +166,11 @@ function validateDataDiri(){
     let agama = document.getElementById('idagama').value;
     let status_perkawinan = document.getElementById('idstatus_perkawinan').value;
     let kualifikasi_pendidikan = document.getElementById('idkualifikasi_pendidikan').value;
+    let id_unit_kerja = document.getElementById('idunit_kerja').value;
+    let id_lokasi = document.getElementById('idlokasi').value;
 
-    if(nik=='' || nama=='' || tempat_lahir=='' || tanggal_lahir=='' || jenis_kelamin=='' || agama=='' || status_perkawinan=='' || kualifikasi_pendidikan==''){
+    if( nik=='' || nama=='' || tempat_lahir=='' || tanggal_lahir=='' || jenis_kelamin=='' 
+        || agama=='' || status_perkawinan=='' || kualifikasi_pendidikan=='' || id_unit_kerja=='' || id_lokasi==''){
         resetValidateMessage('form');
         document.getElementById('msgform').scrollIntoView(false);
         return false;
