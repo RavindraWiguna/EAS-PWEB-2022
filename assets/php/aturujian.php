@@ -4,6 +4,18 @@ if(!session_id()) session_start();
 
 include('proses_ambil_lolos.php');
 
+function get_total_peserta_ujian($hari, $id_sesi, $id_lokasi){
+    global $db;
+    // querykan tabel pendaftar_lolos sesuai kriteria parameter
+    $sql = "SELECT * FROM pendaftar_lolos WHERE tanggal_ujian='$hari' AND id_sesi=$id_sesi AND id_lokasi=$id_lokasi";
+
+    $query = mysqli_query($db, $sql);
+
+    // kembalikan jumlah baris hasil query
+    $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
+    return count($rows);
+}
+
 // urutan jika sesi penuh ganti sesi
 // jika semua sesi penuh, ganti lokasi
 // jika semua lokasi penuh ganti hari
@@ -34,19 +46,37 @@ $total_peserta = [
 // ambil data pendaftar lolos
 $pendaftar_lolos = get_all_pendaftar_lolos();
 
+// sort pendaftar lolos secara terbalik
+usort($pendaftar_lolos, function($a, $b){
+    if($a['id'] == $b['id']) return 0;
+    return $a['id'] < $b['id'] ? 1 : -1;
+});
+
 foreach($total_peserta as $key => $value){
     foreach($lokasi as $key2 => $value2){
         foreach($sesi as $key3 => $value3){
-            $total_peserta[$key][$key2][$key3] = 0;
+            $total_peserta[$key][$key2][$key3] = get_total_peserta_ujian($key, $key3+1, $key2+1);
         }
     }
 }
 
-// set variable current hari, lokasi dan sesi ke nilai default
-$current_hari = '2023-01-16';
-$current_sesi = 1;
-// variabel batas sesi per lokasi diambil dari kuota_per_sesi milik lokasi
-$batas_sesi = $lokasi[$current_lokasi-1]['kuota_per_sesi'];
+
+function find_first_sesi_available(){
+    global $total_peserta, $lokasi;
+
+    foreach($total_peserta as $hari => $data){
+        foreach($data as $key_lokasi => $data2){
+            foreach($data2 as $key_sesi => $jumlah){
+                if($jumlah < $lokasi[$key_lokasi]['kuota_per_sesi']){
+                    return [$hari, $key_sesi, $key_lokasi];
+                }
+            }
+        }
+    }
+
+    return false;
+
+}
 
 $hari_sesi_penuh = false;
 
@@ -54,30 +84,31 @@ $hari_sesi_penuh = false;
 foreach($pendaftar_lolos as $key => $value){
     
     $current_lokasi = $value['id_lokasi'];
+    $current_sesi = $value['id_sesi'];
+    $current_hari = $value['tanggal_ujian'];
+    $batas_sesi = $lokasi[$current_lokasi-1]['kuota_per_sesi'];
     
     // cek berapa total orang di tanggal, lokasi dan sesi itu
     if($total_peserta[$current_hari][$current_lokasi][$current_sesi] < $batas_sesi ){
-        // jika kurang dari batas sesi, tambahkan ke array hari
-        $total_peserta[$current_hari][$current_lokasi][$current_sesi] += 1;
+        // aman, lanjut cek peserta lain
+        continue;
     }
     else {
-        // cek apakah sesi berikutnya tersedia
-        if($current_sesi < 4){
-            $current_sesi+=1;
-            $total_peserta[$current_hari][$current_lokasi][$current_sesi] += 1;
+        // cari sesi tersedia
+        $sesi_tersedia = find_first_sesi_available();
+        if($sesi_tersedia){
+            $current_hari = $sesi_tersedia[0];
+            $current_sesi = $sesi_tersedia[1];
+            $current_lokasi = $sesi_tersedia[2];
         }
-        // cek apakah hari berikutnya tersedia
-        else if($current_hari < '2023-01-21'){
-            $current_hari = date('Y-m-d', strtotime($current_hari. ' + 1 days'));
-            $current_sesi = 1;
-            $total_peserta[$current_hari][$current_lokasi][$current_sesi] += 1;
-        }
-        else{
-            // waduh penuh dan hari mentok, set flag hari_sesi_penuh=true
+        else {
+            // semua sesi penuh
             $hari_sesi_penuh = true;
+            break;
         }
     }
 
+    $pendaftar_lolos[$key]['id_lokasi'] = $current_lokasi;
     $pendaftar_lolos[$key]['id_sesi'] = $current_sesi;
     $pendaftar_lolos[$key]['tanggal_ujian'] = $current_hari;
 }

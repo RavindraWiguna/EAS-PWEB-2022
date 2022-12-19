@@ -22,7 +22,7 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
     <?php include('components/navbar.php')?>
     <?php
         // simpan pendaftar yang dilihat pada session
-        $_SESSION['pendaftar'] = $pendaftar;
+        $_SESSION['pendaftar'] = $pendaftar;    
     ?>
     <div class="main-gradient pt-5">
         <div class="container">
@@ -53,6 +53,24 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                         echo '
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Gagal!</strong> Pendaftar gagal diloloskan.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }
+                }
+                else if($_GET['status'] == 'sukses'){
+                    if($_GET['pesan']== 'gagal'){
+                        echo '
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Berhasil!</strong> Pendaftar berhasil digagalkan.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }
+                    else if($_GET['pesan']== 'lolos'){
+                        echo '
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Berhasil!</strong> Pendaftar berhasil diloloskan.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         ';
@@ -105,10 +123,10 @@ include('../assets/php/proses_ambil_satu_pendaftar.php');
                     ';
                     foreach($pendaftar as $key => $value){
                         if(array_key_exists($key, $show_names)){
-                            $key = $show_names[$key];
+                            $name_atr = $show_names[$key];
                             echo '
                             <tr>
-                                <th scope="row">'.$key.'</th>
+                                <th scope="row">'.$name_atr.'</th>
                                 <td>'.$value.'</td>
                             </tr>
                             ';

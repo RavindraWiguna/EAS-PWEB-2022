@@ -4,8 +4,10 @@ if(!session_id()) session_start();
 //ambil id pendaftar tersimpan di session
 $pendaftar = $_SESSION['pendaftar'];
 
+$id=$pendaftar[0];
+
 // cek apakah ada data pendaftar di tabel pendaftar_lolos
-$sql = "SELECT * FROM pendaftar_lolos WHERE id_pendaftar=".$pendaftar['id'];
+$sql = "SELECT * FROM pendaftar_lolos WHERE id_pendaftar=".$pendaftar[0];
 
 // jalankan query
 $query = mysqli_query($db, $sql);
@@ -28,7 +30,7 @@ if( mysqli_num_rows($query) > 0 ){
 
 
 // buat query untuk mengupdate data pendaftar pada tabel pendaftar untuk kolom status pendaftaran menjadi -1
-$id = $pendaftar['id'];
+// $id = $pendaftar['id'];
 $sql = "UPDATE pendaftar SET status_pendaftaran=-1 WHERE id=$id";
 $query = mysqli_query($db, $sql);
 
