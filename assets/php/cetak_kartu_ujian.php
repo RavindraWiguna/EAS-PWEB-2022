@@ -24,18 +24,8 @@ $pdf->AddPage();
 $pdf->SetFont('Arial','B',16);
 
 
-// exit();
-
-// $img = $app_url.$pendaftar['path_foto'];
-// // prepare a base64 encoded "data url"
-// // $pic = 'data://text/plain;base64,' . base64_encode($img);
-// $info = getimagesize($img);
-
-// exit($info);
-
 
 $pdf->Image("../media/LOGO.png", 30, 3, 30, 30, 'png');
-// $pdf->Image('../..'.$pendaftar['path_foto'], 10, 30, 50, 50, 'jpg');
 
 // mencetak string 
 $pdf->Cell(280,7,'KARTU PESERTA UJIAN CPNS  2023',0,1,'C');
@@ -44,15 +34,25 @@ $pdf->Cell(280,7,'FORMASI LULUSAN TERBAIK',0,1,'C');
 
 // Memberikan space kebawah agar tidak terlalu rapat
 $pdf->Cell(10,15,'',0,1);
-
-
 // membuat garis lurus di pdf
 $pdf->Line(10, 35, 290, 35);
 
+// This function call can be copied into your project and can be made from anywhere in your code
+$filepath = '../media/tmp/tmp.png';
+$text = '1234567890';
+$size = '30';
+$orientation = 'horizontal';
+$code_type = 'Code128';
+$print  = true;
+$sizefactor = 1;
+if(is_file($filepath)) unlink($filepath);
+barcode( $filepath, $text, $size, $orientation, $code_type, $print, $sizefactor );
+
+$pdf->Image($filepath, 230, 40, 60, 18, 'png');
 
 // membuat header tabel
 $width_col1 = 50;
-$gap = 5;
+$gap = 4;
 $pdf->SetFont('Arial','',12);
 $pdf->Cell($width_col1,6,'Instansi:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
@@ -84,21 +84,19 @@ $pdf->Cell(10,$gap,'',0,1);
 $pdf->Cell($width_col1,6,'Lokasi Tes:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
 $pdf->Cell(10,$gap*2,'',0,1);
-$pdf->Cell(145,6,'Lokasi Tes:',0,0,'C');
-$pdf->Cell(145,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
+$pdf->Cell(250,6,'........................................................, 2023',0,1, 'R');
+$pdf->Cell(145,6,'Peserta',0,0,'C');
+$pdf->Cell(145,6,'Panitia Pengadaan Instansi CPNS',0,1,'C');
+$pdf->Cell(10,$gap*2,'',0,1);
+$sx = 48;
+$len = 70;
+$y = 175;
+$pdf->Line($sx, $y,$sx+$len, $y);
 
-// This function call can be copied into your project and can be made from anywhere in your code
-$filepath = '../media/tmp/tmp.png';
-$text = '1234567890';
-$size = '30';
-$orientation = 'horizontal';
-$code_type = 'Code128';
-$print  = true;
-$sizefactor = 1;
-if(is_file($filepath)) unlink($filepath);
-barcode( $filepath, $text, $size, $orientation, $code_type, $print, $sizefactor );
+$pdf->Cell(10,$gap+8,'',0,1);
+$pdf->Cell(145,6,'PUTU RAVINDRA WIGUNA',0,0,'C');
 
-$pdf->Image($filepath, 230, 40, 60, 18, 'png');
+
 
 // untuk koneksi ke database
 // include ("config.php");
