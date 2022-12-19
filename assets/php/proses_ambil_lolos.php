@@ -4,7 +4,7 @@ if(!session_id()) session_start();
 $id = $_SESSION['user']['id'];
 
 // buat query untuk ambil data dari database bagi pendaftar lolos
-$sql = 'SELECT p.id, p.nama, l.nama_dinas, l.alamat_dinas, pl.tanggal_ujian, s.id as "id_sesi", s.waktu_mulai, s.waktu_selesai
+$sql = 'SELECT p.id, pl.id_lokasi, p.nama, l.nama_dinas, l.alamat_dinas, pl.tanggal_ujian, s.id as "id_sesi", s.waktu_mulai, s.waktu_selesai
         FROM pendaftar as p
         JOIN pendaftar_lolos as pl
         ON p.id=pl.id_pendaftar
@@ -48,6 +48,11 @@ function get_chunk_pendaftar(){
     $chunk_pendaftar = array_slice($pendaftar_lolos, $start_id, $show_per_page);
 
     return $chunk_pendaftar;
+}
+
+function get_all_pendaftar_lolos(){
+    global $pendaftar_lolos;
+    return $pendaftar_lolos;
 }
 
 ?>

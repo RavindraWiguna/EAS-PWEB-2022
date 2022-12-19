@@ -41,7 +41,7 @@ include('../assets/php/proses_ambil_lolos.php');
                     '10' => 'Oktober',
                     '11' => 'November',
                     '12' => 'Desember'
-                ];
+                ];  
 
                 $chunk_pendaftar = get_chunk_pendaftar();
                 if(sizeof($chunk_pendaftar) > 0){
@@ -94,20 +94,29 @@ include('../assets/php/proses_ambil_lolos.php');
                 }
 
                 ?>
-                <nav aria-label="Page navigation example" class="pb-1">
-                    <ul class="pagination">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous" id="prev">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                        </li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next" id="next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <nav aria-label="Page navigation example" class="pb-1">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous" id="prev">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                                </li>
+                                <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next" id="next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="">
+                        <a href="../assets/php/aturujian.php" class="btn btn-primary" style="text-decoration:None;">Atur ulang ujian otomatis</a>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
