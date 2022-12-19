@@ -35,28 +35,36 @@ include('../assets/php/proses_ambil_pendaftar.php');
                 ];
 
                 $chunk_pendaftar = get_chunk_pendaftar();
-                echo '
-                <table class="table table-hover mx-auto">
-                <thead>
-                    <tr>
-                    <th scope="col" class="text-center">ID</th>
-                    <th scope="col" class="text-center">Nama</th>
-                    </tr>
-                </thead>
-                <tbody>
-                ';
-                foreach($chunk_pendaftar as $key => $value){
+                if(sizeof($chunk_pendaftar) == 0){
                     echo '
-                    <tr>
-                        <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['id'].'</a></th>
-                        <td><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['nama'].'</a></td>
-                    </tr>
+                    <div class="d-flex flex-column text-center text-black mt-4 mb-2">
+                        <h5>Belum ada pendaftar</h5>
+                    </div>
+                    ';  
+                }else{
+                    echo '
+                    <table class="table table-hover mx-auto">
+                    <thead>
+                        <tr>
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">Nama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    ';
+                    foreach($chunk_pendaftar as $key => $value){
+                        echo '
+                        <tr>
+                            <th scope="row"><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['id'].'</a></th>
+                            <td><a href="pages/lihat_pendaftar.php?id='.$value['id'].'" class="text-black" style="text-decoration:None;">'.$value['nama'].'</a></td>
+                        </tr>
+                        ';
+                    }
+                    echo '
+                    </tbody>
+                    </table>
                     ';
                 }
-                echo '
-                </tbody>
-                </table>
-                ';
                 ?>
                 <nav aria-label="Page navigation example" class="pb-1">
                     <ul class="pagination">
