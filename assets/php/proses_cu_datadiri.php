@@ -21,6 +21,7 @@ if(isset($_POST['isi_data_diri'])){
     $alamat = $_POST['alamat'];
     $agama = $_POST['agama'];
     $status_perkawinan = $_POST['status_perkawinan'];
+    $kualifikasi_pendidikan = $_POST['kualifikasi_pendidikan'];
 
     if($pendaftar['exist']){
         // ada pendaftar berarti kita update data
@@ -34,7 +35,8 @@ if(isset($_POST['isi_data_diri'])){
         jenis_kelamin='$jenis_kelamin', 
         alamat='$alamat', 
         agama='$agama', 
-        status_perkawinan='$status_perkawinan'  
+        status_perkawinan='$status_perkawinan',
+        kualifikasi_pendidikan='$kualifikasi_pendidikan'
         WHERE id_akun=$id";
 
         // eksekusi query update
@@ -54,9 +56,21 @@ if(isset($_POST['isi_data_diri'])){
     else{
         // belum ada data di tabel pendaftar, maka tambahkan data ke tabel
 
+        // tapi cek dulu apakah ada nik yang sama
+        $sql = "SELECT * FROM pendaftar WHERE nik='$nik'";
+        $query = mysqli_query($db, $sql);
+
+        // cek jumlah row yang didapat
+        if(mysqli_num_rows($query) > 0){
+            // kalau ada, maka alihkan ke halaman dashboard.php dengan status=gagal
+            header('Location: ../../pages/dashboards/user_dashboard.php?status=gagal&pesan=nik-terdaftar');
+            exit();
+        }
+
+
         // buat query insert
-        $sql = "INSERT INTO pendaftar (id_akun, nik, nama, tanggal_lahir, tempat_lahir, jenis_kelamin, alamat, agama, status_perkawinan)
-        VALUES ('$id', '$nik', '$nama_lengkap', '$tanggal_lahir', '$tempat_lahir', '$jenis_kelamin', '$alamat', '$agama', '$status_perkawinan')";
+        $sql = "INSERT INTO pendaftar (id_akun, nik, nama, tanggal_lahir, tempat_lahir, jenis_kelamin, alamat, agama, status_perkawinan, kualifikasi_pendidikan)
+        VALUES ('$id', '$nik', '$nama_lengkap', '$tanggal_lahir', '$tempat_lahir', '$jenis_kelamin', '$alamat', '$agama', '$status_perkawinan', '$kualifikasi_pendidikan')";
 
         // eksekusi query insert
         $query = mysqli_query($db, $sql);

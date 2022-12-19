@@ -234,8 +234,9 @@ function validateDataDiri(){
         return false;
     }
 
-    // cek apakah kualifikasi pendidikan tidak berisi karakter ?&%$#@!^*()_+|~=`{}[]:";'<>?/\-
-    if(regex.test(kualifikasi_pendidikan)){
+    // cek apakah kualifikasi pendidikan hanya boleh terdiri dari huruf dan angka serta simbol - dan spasi
+    let regex_pendidikan = /[^a-zA-Z0-9\s\-]/;
+    if(regex_pendidikan.test(kualifikasi_pendidikan)){
         resetValidateMessage('kualifikasi_pendidikan');
         document.getElementById('msgkualifikasi_pendidikan').scrollIntoView(false);
         return false;

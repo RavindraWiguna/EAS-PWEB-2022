@@ -107,6 +107,13 @@ check(1);
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
             }
+            // jika nik telah terdaftar
+            else if($_GET['pesan']=='nik-terdaftar'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Maaf!</strong> NIK telah terdaftar
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
         }
     }
     ?>
