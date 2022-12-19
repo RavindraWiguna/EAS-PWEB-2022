@@ -9,6 +9,7 @@ $app_url = $_SESSION['app_url'];
 // memanggil library FPDF
 require('fpdf/fpdf.php');
 include('../../config.php');
+include('barcode.php');
 
 // ambil data pendaftar dari tabel pendaftar
 $sql = 'SELECT * FROM pendaftar WHERE id_akun = '.$_SESSION['user']['id'];
@@ -33,7 +34,7 @@ $pdf->SetFont('Arial','B',16);
 // exit($info);
 
 
-$pdf->Image("../media/LOGO.png", 3, 3, 30, 30, 'png');
+$pdf->Image("../media/LOGO.png", 30, 3, 30, 30, 'png');
 // $pdf->Image('../..'.$pendaftar['path_foto'], 10, 30, 50, 50, 'jpg');
 
 // mencetak string 
@@ -74,10 +75,17 @@ $pdf->Cell($width_col1,6,'Lokasi Tes:',0,0,'');
 $pdf->Cell(64,6,'Kementrian Kelautan dan Perikanan',0,1,'C');
 
 // This function call can be copied into your project and can be made from anywhere in your code
-$filepath = '../../storage/berkas/'
+$filepath = '../media/tmp/tmp.png';
+$text = '1234567890';
+$size = '30';
+$orientation = 'horizontal';
+$code_type = 'Code128';
+$print  = true;
+$sizefactor = 1;
+if(is_file($filepath)) unlink($filepath);
 barcode( $filepath, $text, $size, $orientation, $code_type, $print, $sizefactor );
 
-$pdf->Image()
+$pdf->Image($filepath, 230, 40, 60, 18, 'png');
 
 // untuk koneksi ke database
 // include ("config.php");
