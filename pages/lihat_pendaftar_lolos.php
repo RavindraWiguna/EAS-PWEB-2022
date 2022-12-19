@@ -25,6 +25,31 @@ include('../assets/php/proses_ambil_lolos.php');
                 <h5>Data Pendaftar Lolos Verifikasi</h5>
                 <h6>Klik pada ID/Nama pendaftar untuk melihat detail</h6>
             </div>
+            <?php
+
+                // cek apakah ada status
+                if(isset($_GET['status'])){
+                    // cek apakah statusnya sukses
+                    if($_GET['status'] == 'sukses'){
+                        // jika berhasil, tampilkan pesan berhasil
+                        echo '
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Berhasil!</strong> '.$_GET['pesan'].'.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }else{
+                        // jika gagal, tampilkan pesan gagal
+                        echo '
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Gagal!</strong> '.$_GET['pesan'].'.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        ';
+                    }
+                }
+
+            ?>
             <div class="bg-white rounded px-3 mx-auto shadow">
                 <div class="pt-2"></div>
                 <?php

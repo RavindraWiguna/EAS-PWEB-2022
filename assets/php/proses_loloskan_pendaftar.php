@@ -7,7 +7,7 @@ $pendaftar = $_SESSION['pendaftar'];
 // tambahkan pendaftar ke tabel pendaftar lolos dengan kolom id_pendaftar, id_verifier, id_sesi, tanggal_ujian dan id_lokasi
 $sql = "INSERT INTO pendaftar_lolos 
 (id_pendaftar, id_verifier, id_sesi, tanggal_ujian, id_lokasi) 
-VALUES ('".$pendaftar['id']."', '".$_SESSION['user']['id']."', '1', '2023-01-16', '1')";
+VALUES ('".$pendaftar['id']."', '".$_SESSION['user']['id']."', '1', '2023-01-16', ".$pendaftar['id_lokasi'].")";
 
 // jalankan query
 $query = mysqli_query($db, $sql);

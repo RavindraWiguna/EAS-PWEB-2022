@@ -64,11 +64,12 @@ include('../assets/php/proses_ambil_datadiri.php');
                             ';
                         }
                     }
+                    $disabled = $pendaftar['status_pendaftaran'] != 0 ? 'disabled' : '';
                     echo '
                     </tbody>
                     </table>
                     <div class="pb-3 d-grid">
-                        <a href="form_datadiri.php" class="btn btn-primary">Sunting Data Diri</a>
+                        <a href="form_datadiri.php" class="btn btn-primary '.$disabled.'">Sunting Data Diri</a>
                     </div>
                     ';
                 }else{

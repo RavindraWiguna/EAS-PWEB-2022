@@ -57,6 +57,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                                 ';
                             }
                         }
+                        $disabled = $pendaftar['status_pendaftaran'] != 0 ? 'disabled' : '';
                         echo '
                         </tbody>
                         </table>
@@ -64,7 +65,7 @@ include('../assets/php/proses_ambil_datadiri.php');
                         <div class="d-flex justify-content-center pb-3 flex-column">
                             <img src="'.$app_url.$pendaftar['path_foto'].'" alt="" style="width:50%; margin-bottom:10px">    
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button type="button" class="btn btn-primary mb-2 '.$disabled.'" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Sunting Berkas
                             </button>
                         </div>

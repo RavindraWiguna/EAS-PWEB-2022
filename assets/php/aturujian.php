@@ -44,75 +44,56 @@ foreach($total_peserta as $key => $value){
 
 // set variable current hari, lokasi dan sesi ke nilai default
 $current_hari = '2023-01-16';
-$current_lokasi = 1;
 $current_sesi = 1;
 // variabel batas sesi per lokasi diambil dari kuota_per_sesi milik lokasi
 $batas_sesi = $lokasi[$current_lokasi-1]['kuota_per_sesi'];
 
-// print_r($batas_sesi);
-// exit();
-
-// echo 'banyak lolos: '.sizeof($pendaftar_lolos).'--a--a-';
+$hari_sesi_penuh = false;
 
 // loop seluruh pendaftar lolos dan tentukan tanggal ujian, lokasi dan sesi
 foreach($pendaftar_lolos as $key => $value){
-    // echo '-'.$current_sesi.'---ada orang sebanyak: '.$total_peserta[$current_hari][$current_lokasi][$current_sesi].'--00-00-';
+    
+    $current_lokasi = $value['id_lokasi'];
+    
     // cek berapa total orang di tanggal, lokasi dan sesi itu
     if($total_peserta[$current_hari][$current_lokasi][$current_sesi] < $batas_sesi ){
         // jika kurang dari batas sesi, tambahkan ke array hari
         $total_peserta[$current_hari][$current_lokasi][$current_sesi] += 1;
-        $pendaftar_lolos[$key]['id_lokasi'] = $current_lokasi;
-        $pendaftar_lolos[$key]['id_sesi'] = $current_sesi;
-        $pendaftar_lolos[$key]['tanggal_ujian'] = $current_hari;
-        // echo '[[[masuk]]]'.$pendaftar_lolos[$key]['id_sesi'].'--------';
-    } else {
-        // echo 'aaaaa';
+    }
+    else {
         // cek apakah sesi berikutnya tersedia
         if($current_sesi < 4){
-            // echo 'updateeee';
             $current_sesi+=1;
             $total_peserta[$current_hari][$current_lokasi][$current_sesi] += 1;
-            $pendaftar_lolos[$key]['id_lokasi'] = $current_lokasi;
-            $pendaftar_lolos[$key]['id_sesi'] = $current_sesi;
-            $pendaftar_lolos[$key]['tanggal_ujian'] = $current_hari;
-        }
-        // cek apakah lokasi berikutnya tersedia
-        else if($current_lokasi < 4){
-            // echo 'nooo';
-            $current_lokasi+=1;
-            $current_sesi = 1;
-            $total_peserta[$current_hari][$current_lokasi][$current_sesi] += 1;
-            $pendaftar_lolos[$key]['id_lokasi'] = $current_lokasi;
-            $pendaftar_lolos[$key]['id_sesi'] = $current_sesi;
-            $pendaftar_lolos[$key]['tanggal_ujian'] = $current_hari;
         }
         // cek apakah hari berikutnya tersedia
-        else if($current_hari < '2023-01-18'){
+        else if($current_hari < '2023-01-21'){
             $current_hari = date('Y-m-d', strtotime($current_hari. ' + 1 days'));
-            $current_lokasi = 1;
             $current_sesi = 1;
             $total_peserta[$current_hari][$current_lokasi][$current_sesi] += 1;
-            $pendaftar_lolos[$key]['id_lokasi'] = $current_lokasi;
-            $pendaftar_lolos[$key]['id_sesi'] = $current_sesi;
-            $pendaftar_lolos[$key]['tanggal_ujian'] = $current_hari;
+        }
+        else{
+            // waduh penuh dan hari mentok, set flag hari_sesi_penuh=true
+            $hari_sesi_penuh = true;
         }
     }
-}
 
-// exit('dd');
+    $pendaftar_lolos[$key]['id_sesi'] = $current_sesi;
+    $pendaftar_lolos[$key]['tanggal_ujian'] = $current_hari;
+}
 
 // update data pendaftar lolos
 foreach($pendaftar_lolos as $key => $value){
     $id = $value['id'];
-    $id_lokasi = $value['id_lokasi'];
     $id_sesi = $value['id_sesi'];
     $tanggal_ujian = $value['tanggal_ujian'];
 
-    $sql = "UPDATE pendaftar_lolos SET id_lokasi=$id_lokasi, id_sesi=$id_sesi, tanggal_ujian='$tanggal_ujian' WHERE id_pendaftar=$id";
+    $sql = "UPDATE pendaftar_lolos SET id_sesi=$id_sesi, tanggal_ujian='$tanggal_ujian' WHERE id_pendaftar=$id";
     $query = mysqli_query($db, $sql);
 }
 
 // redirect ke lihat pendaftar lolos php
-header('Location: ../../pages/lihat_pendaftar_lolos.php?page=1&show=25');
+$status = $hari_sesi_penuh? 'gagal' : 'sukses';
+header('Location: ../../pages/lihat_pendaftar_lolos.php?page=1&show=25&status='.$status.'&pesan=mengatur%20sesi%20ujian');
 exit();
 ?>
